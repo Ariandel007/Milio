@@ -57,7 +57,7 @@ namespace Milio.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
+        public async Task<IActionResult> Login([FromBody]UserForLoginDto userForLoginDto)
         {
             var user = await this._userManager.FindByNameAsync(userForLoginDto.UserName);
 
