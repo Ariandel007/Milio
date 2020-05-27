@@ -4,10 +4,10 @@
 
     <li class="drop-down"><a href="">Iniciar Sesion</a>
       <ul>
-        <form>
-          <input type="text" class="form-control log-input" placeholder="Tu username" value="" />
-          <input type="password" class="form-control log-input" placeholder="Tu contraseña" value="" />
-          <input type="submit" class="in-submit" value="Iniciar Sesion" />
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+          <input type="text" name="UserName" class="form-control log-input" placeholder="Tu username" required [(ngModel)]="model.userName"/>
+          <input type="password" name="Password" class="form-control log-input" placeholder="Tu contraseña" required [(ngModel)]="model.password" />
+          <input type="submit" [disabled]="!loginForm.valid" class="in-submit" value="Iniciar Sesion" />
           <a href="#">¿Olvidaste tu contraseña?</a>
         </form>
       </ul>
