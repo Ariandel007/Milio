@@ -13,7 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import { MessagesComponent } from './messages/messages.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './_services/auth.service';
-import { AlertifyService } from './_services/alertify.service';
 import { CarerListComponent } from './carers/carer-list/carer-list.component';
 import { CarerCardComponent } from './carers/carer-card/carer-card.component';
 import { AuthGuard } from './_guards/auth.guard';
@@ -21,6 +20,8 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { RegisterComponent } from './register/register.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -52,20 +53,20 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       CarouselModule.forRoot(),
       FormsModule,
       HttpClientModule,
-      JwtModule.forRoot(\nconfig
-   ],
-   blacklistedRoutes: [
-      'localhost
-   ]
-}),
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          whitelistedDomains: ['localhost:5001'],
+          blacklistedRoutes: ['localhost:5001/api/auth']
+        }
+      }),
       RouterModule.forRoot(appRoutes),
       BsDropdownModule.forRoot(),
-      BrowserAnimationsModule
-
+      BrowserAnimationsModule,
+      ToastrModule.forRoot() // ToastrModule added
    ],
    providers: [
      AuthService,
-     AlertifyService,
      AuthGuard
    ],
    bootstrap: [

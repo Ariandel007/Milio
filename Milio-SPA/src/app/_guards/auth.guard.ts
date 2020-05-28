@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
-import { AlertifyService } from '../_services/alertify.service';
+// import { AlertifyService } from '../_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private alertify: AlertifyService
+    // private alertify: AlertifyService
+    private toastr: ToastrService
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot): boolean {
@@ -25,14 +28,16 @@ export class AuthGuard implements CanActivate {
         return true;
       } else {
         this.router.navigate(['messages']);
-        this.alertify.error('No estas autorizado a estar en esta area');
+        // this.alertify.error('No estas autorizado a estar en esta area');
+        this.toastr.error('No estas autorizado a estar en esta area');
       }
     }
     if (this.authService.loggedIn()) {
       return true;
     }
 
-    this.alertify.error('No puedes pasar!!');
+    // this.alertify.error('No puedes pasar!!');
+    this.toastr.error('No puedes pasar!!');
     this.router.navigate(['/home']);
 
     return false;

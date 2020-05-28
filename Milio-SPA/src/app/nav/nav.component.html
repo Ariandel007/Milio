@@ -3,18 +3,21 @@
     <ul *ngIf="loggedIn()">
       <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
 
-      <li class="drop-down"><a href="">Bienvenido {{authService.decodedToken?.unique_name | titlecase}}</a>
+      <li class="drop-down"><a>Bienvenido {{authService.decodedToken?.unique_name | titlecase}}</a>
         <ul>
           <li routerLinkActive="active"><a [routerLink]="['/client/edit']">Perfil</a></li>
           <li><a (click)="logout()">Cerrar Sesion</a></li>
         </ul>
+      </li>
+      <li>
+        <img src = "{{photoUrl || '../../../../assets/images/user.jpg" alt="">
       </li>
     </ul>
 
     <ul *ngIf="!loggedIn()">
       <li class="btn"><a>Unete</a></li>
 
-      <li class="drop-down"><a href="">Iniciar Sesion</a>
+      <li class="drop-down"><a>Iniciar Sesion</a>
         <ul>
           <form #loginForm="ngForm" (ngSubmit)="login()">
             <input type="text" name="UserName" class="form-control log-input" placeholder="Tu username" required [(ngModel)]="model.userName"/>
