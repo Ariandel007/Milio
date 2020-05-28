@@ -29,3 +29,9 @@
   border: 2px solid #f03c02;
   color: #f03c02;
 }
+
+img {
+  max-height: 50px;
+  border: 2px solud white;
+  display: inline;
+}

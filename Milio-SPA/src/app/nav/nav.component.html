@@ -1,16 +1,29 @@
 <nav class="nav-menu d-lg-block">
-  <ul>
-    <li class="btn"><a>Unete</a></li>
 
-    <li class="drop-down"><a href="">Iniciar Sesion</a>
-      <ul>
-        <form #loginForm="ngForm" (ngSubmit)="login()">
-          <input type="text" name="UserName" class="form-control log-input" placeholder="Tu username" required [(ngModel)]="model.userName"/>
-          <input type="password" name="Password" class="form-control log-input" placeholder="Tu contraseña" required [(ngModel)]="model.password" />
-          <input type="submit" [disabled]="!loginForm.valid" class="in-submit" value="Iniciar Sesion" />
-          <a href="#">¿Olvidaste tu contraseña?</a>
-        </form>
-      </ul>
-    </li>
-  </ul>
+    <ul *ngIf="loggedIn()">
+      <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
+
+      <li class="drop-down"><a href="">Bienvenido {{authService.decodedToken?.unique_name | titlecase}}</a>
+        <ul>
+          <li routerLinkActive="active"><a [routerLink]="['/client/edit']">Perfil</a></li>
+          <li><a (click)="logout()">Cerrar Sesion</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul *ngIf="!loggedIn()">
+      <li class="btn"><a>Unete</a></li>
+
+      <li class="drop-down"><a href="">Iniciar Sesion</a>
+        <ul>
+          <form #loginForm="ngForm" (ngSubmit)="login()">
+            <input type="text" name="UserName" class="form-control log-input" placeholder="Tu username" required [(ngModel)]="model.userName"/>
+            <input type="password" name="Password" class="form-control log-input" placeholder="Tu contraseña" required [(ngModel)]="model.password" />
+            <input type="submit" [disabled]="!loginForm.valid" class="in-submit" value="Iniciar Sesion" />
+            <a href="#">¿Olvidaste tu contraseña?</a>
+          </form>
+        </ul>
+      </li>
+    </ul>
+
 </nav>

@@ -43,11 +43,11 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  roleMatch(allowedRoles): boolean {
+  roleMatch(allowedRoles: Array<string>): boolean {
     let isMatch = false;
     const userRoles = this.decodedToken.role as Array<string>;
 
-    allowedRoles.array.forEach(element => {
+    allowedRoles.forEach(element => {
       if (userRoles.includes(element)) {
         isMatch = true;
         return;
