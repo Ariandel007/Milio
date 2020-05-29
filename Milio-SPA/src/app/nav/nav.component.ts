@@ -21,16 +21,6 @@ export class NavComponent implements OnInit {
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
-  login() {
-    this.authService.login(this.model).subscribe(next => {
-      this.toastr.success('Inicio de sesion con exito');
-    }, error => {
-      this.toastr.error(error);
-    }, () => {
-      this.router.navigate(['/messages']);
-    });
-  }
-
   loggedIn() {
     return this.authService.loggedIn();
   }

@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './login/login.component';
 
 
 export function tokenGetter() {
@@ -46,7 +47,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       CarerListComponent,
       CarerCardComponent,
       HasRoleDirective,
-      RegisterComponent
+      RegisterComponent,
+      LoginComponent
    ],
    imports: [
       BrowserModule,
@@ -63,7 +65,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       RouterModule.forRoot(appRoutes),
       BsDropdownModule.forRoot(),
       BrowserAnimationsModule,
-      ToastrModule.forRoot() // ToastrModule added
+      ToastrModule.forRoot(), // ToastrModule added
    ],
    providers: [
      AuthService,
