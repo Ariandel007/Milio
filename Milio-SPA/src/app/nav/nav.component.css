@@ -92,6 +92,8 @@ a.active,a:hover{
 #check{
   display: none;
 }
+
+
 @media (max-width: 952px){
   label.logo{
     font-size: 27px;
@@ -106,15 +108,26 @@ a.active,a:hover{
     display: block;
     margin-right: 40px;
   }
-  ul{
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 80px;
-    left: -100%;
-    text-align: center;
-    transition: all .5s;
+
+  .checkBar:hover {
+    background: none;
+    color: #BF6F1F;
   }
+
+  .nav-large-elements{
+    display: none;
+  }
+
+  ul {
+    width: 70%;
+    margin: auto;
+  }
+
+  li a{
+    padding: 4px 4px;
+    border-radius: 3px;
+  }
+  /*
   nav ul li{
     display: block;
     margin: 50px 0;
@@ -126,7 +139,10 @@ a.active,a:hover{
   a:hover,a.active{
     background: none;
   }
-  #check:checked ~ ul{
+  section{
+    position: relative;
+  } */
+  /* #check:checked ~ ul{
     left: 0;
-  }
+  } */
 }

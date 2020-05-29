@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
 
   model: any = {};
   photoUrl: string;
+  menuBarActive: boolean = false;
 
   constructor(public authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
@@ -34,6 +35,10 @@ export class NavComponent implements OnInit {
     this.toastr.info('log out');
     this.router.navigate(['home']);
     this.model = {};
+  }
+
+  toggleMenu(){
+    this.menuBarActive = !this.menuBarActive;
   }
 
 }

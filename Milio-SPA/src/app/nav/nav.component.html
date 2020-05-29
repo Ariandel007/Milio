@@ -4,11 +4,11 @@
   <body>
     <nav>
       <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <a class="icon">&#9776;</a>
+      <label for="check" class="checkbtn" (click)="toggleMenu()">
+        <a class="icon checkBar">&#9776;</a>
       </label>
       <label  class="logo mr-auto"> <h1 class="text-dark">Milio</h1></label>
-      <ul *ngIf="loggedIn()">
+      <ul *ngIf="loggedIn()" class="nav-large-elements ">
         <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
         <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" >Mensajes</a></li>
         <li>
@@ -28,9 +28,26 @@
         </li>
       </ul>
 
-      <ul *ngIf="!loggedIn()">
+      <ul *ngIf="!loggedIn()" class="nav-large-elements">
         <li class="btn"><a class="unete">Unete</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/login']" >Iniciar Sesion</a></li>
       </ul>
     </nav>
   </body>
+  <section *ngIf="menuBarActive">
+    <nav>
+      <div class="container">
+        <ul *ngIf="loggedIn()" class="list-group">
+          <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" class="list-group-item">Buscar Cuidadores</a></li>
+          <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" class="list-group-item">Mensajes</a></li>
+          <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
+          <li *appHasRole="['Admin', 'Client', 'Babysitter']"><a class="list-group-item" (click)="logout()">Cerrar Sesion</a></li>
+        </ul>
+
+        <ul *ngIf="!loggedIn()">
+          <li class="btn"><a class="unete">Unete</a></li>
+          <li routerLinkActive="active"><a [routerLink]="['/login']" >Iniciar Sesion</a></li>
+        </ul>
+      </div>
+    </nav>
+  </section>
