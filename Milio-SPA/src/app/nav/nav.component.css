@@ -3,7 +3,7 @@ img {
   border: 2px solud white;
   display: inline;
 }
-.in-submit {
+/* .in-submit {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -23,7 +23,7 @@ img {
 .in-submit:hover {
   background: #f03c02;
   color: #fff;
-}
+} */
 
 *{
   margin: 0;
@@ -33,6 +33,10 @@ img {
   text-decoration: none;
 }
 
+label.logo{
+  font-size: 27px;
+  padding-left: 25px;
+}
 
 nav ul{
   float: right;

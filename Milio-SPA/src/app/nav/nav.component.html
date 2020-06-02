@@ -7,7 +7,8 @@
       <label for="check" class="checkbtn" (click)="toggleMenu()">
         <a class="icon checkBar">&#9776;</a>
       </label>
-      <label  class="logo mr-auto"> <h1 class="text-dark">Milio</h1></label>
+      <label  class="logo mr-auto" [routerLink]="['/']"><img src="../../assets/images/logo-milio.jpg"></label>
+      <label  class="logo mr-auto" [routerLink]="['/']"> <h1 class="text-dark">Milio</h1></label>
       <ul *ngIf="loggedIn()" class="nav-large-elements ">
         <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
         <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" >Mensajes</a></li>
