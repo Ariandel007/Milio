@@ -187,6 +187,10 @@ namespace Milio.API.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Email")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
@@ -249,6 +253,8 @@ namespace Milio.API.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
             modelBuilder.Entity("Milio.API.Models.UserRole", b =>
@@ -264,6 +270,26 @@ namespace Milio.API.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Milio.API.Models.Carer", b =>
+                {
+                    b.HasBaseType("Milio.API.Models.User");
+
+                    b.Property<int?>("Attitude")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Carer");
+                });
+
+            modelBuilder.Entity("Milio.API.Models.Client", b =>
+                {
+                    b.HasBaseType("Milio.API.Models.User");
+
+                    b.Property<int?>("NumberOfChildren")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Client");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

@@ -12,6 +12,10 @@ namespace Milio.API.Data
         public DataContext(DbContextOptions<DataContext> options):base(options) {}
 
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Client> Clients { get; set; }
+
+        public DbSet<Carer> Carers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -34,8 +34,12 @@ export class AuthService {
     );
   }
 
-  register(user: User) {
-    return this.http.post(this.baseUrl + 'register', user);
+  registerClient(user: User) {
+    return this.http.post(this.baseUrl + 'registerClient', user);
+  }
+
+  registerCarer(user: User) {
+    return this.http.post(this.baseUrl + 'registerCarer', user);
   }
 
   loggedIn() {

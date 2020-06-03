@@ -36,18 +36,38 @@ namespace Milio.API.Controllers
             this._signInManager = signInManager;
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
+        [HttpPost("registerClient")]
+        public async Task<IActionResult> RegisterClient(UserForRegisterDto userForRegisterDto)
         {
-            var userToCreate = _mapper.Map<User>(userForRegisterDto);
+            var userToCreate = _mapper.Map<Client>(userForRegisterDto);
 
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
 
-            var userToReturn = _mapper.Map<UserForDetailedtDto>(userToCreate);
+            var userToReturn = _mapper.Map<ClientForDetailedtDto>(userToCreate);
 
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(userToCreate, "Client");
+
+                return CreatedAtRoute("GetUser", new {controller = "Users", 
+                   id = userToCreate.Id}, userToReturn);
+            }
+
+            return BadRequest(result.Errors);
+        }
+
+        [HttpPost("registerCarer")]
+        public async Task<IActionResult> RegisterCarer(UserForRegisterDto userForRegisterDto)
+        {
+            var userToCreate = _mapper.Map<Carer>(userForRegisterDto);
+
+            var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
+
+            var userToReturn = _mapper.Map<ClientForDetailedtDto>(userToCreate);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(userToCreate, "Babysitter");
 
                 return CreatedAtRoute("GetUser", new {controller = "Users", 
                    id = userToCreate.Id}, userToReturn);

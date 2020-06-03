@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Milio.API.Migrations
 {
-    public partial class BDUserRole : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,10 @@ namespace Milio.API.Migrations
                     LastActive = table.Column<DateTime>(nullable: false),
                     AboutMe = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true)
+                    Country = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Attitude = table.Column<int>(nullable: true),
+                    NumberOfChildren = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

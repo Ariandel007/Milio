@@ -14,7 +14,9 @@ namespace Milio.API.Data
             if (!userManager.Users.Any())
             {
                 var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-                var users = JsonConvert.DeserializeObject<List<User>>(userData);
+                var userData2 = System.IO.File.ReadAllText("Data/CarerSeedData.json");
+                var users = JsonConvert.DeserializeObject<List<Client>>(userData);
+                var carers = JsonConvert.DeserializeObject<List<Carer>>(userData2);
 
                 //create some role
                 var roles = new List<Role>
@@ -36,18 +38,25 @@ namespace Milio.API.Data
                     userManager.AddToRoleAsync(user, "Client").Wait();
                 }
 
-                // crear admin user
-                var adminUser = new User{
-                    UserName = "Admin"
-                };
-
-                var result = userManager.CreateAsync(adminUser, "password").Result;
-
-                if (result.Succeeded)
+                foreach (var carer in carers)
                 {
-                    var admin = userManager.FindByNameAsync("Admin").Result;
-                    userManager.AddToRolesAsync(admin, new [] {"Admin"});
+
+                    userManager.CreateAsync(carer, "password").Wait();
+                    userManager.AddToRoleAsync(carer, "Babysitter").Wait();
                 }
+
+                // crear admin user
+                // var adminUser = new User{
+                //     UserName = "Admin"
+                // };
+
+                // var result = userManager.CreateAsync(adminUser, "password").Result;
+
+                // if (result.Succeeded)
+                // {
+                //     var admin = userManager.FindByNameAsync("Admin").Result;
+                //     userManager.AddToRolesAsync(admin, new [] {"Admin"});
+                // }
 
             }
         }
