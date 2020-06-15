@@ -13,8 +13,10 @@ namespace Milio.API.Data
 
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Client> Clients { get; set; }
-
         public DbSet<Carer> Carers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

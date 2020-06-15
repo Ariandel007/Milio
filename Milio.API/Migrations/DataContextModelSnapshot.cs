@@ -101,6 +101,57 @@ namespace Milio.API.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Milio.API.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Acepted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("CarerId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Cost")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarerId");
+
+                    b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("Milio.API.Models.Document", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublicID")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarerId")
+                        .IsUnique();
+
+                    b.ToTable("Documents");
+                });
+
             modelBuilder.Entity("Milio.API.Models.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -272,12 +323,19 @@ namespace Milio.API.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
+            modelBuilder.Entity("Milio.API.Models.Admin", b =>
+                {
+                    b.HasBaseType("Milio.API.Models.User");
+
+                    b.HasDiscriminator().HasValue("Admin");
+                });
+
             modelBuilder.Entity("Milio.API.Models.Carer", b =>
                 {
                     b.HasBaseType("Milio.API.Models.User");
 
-                    b.Property<int?>("Attitude")
-                        .HasColumnType("int");
+                    b.Property<float>("FareForHour")
+                        .HasColumnType("float");
 
                     b.HasDiscriminator().HasValue("Carer");
                 });
@@ -286,8 +344,8 @@ namespace Milio.API.Migrations
                 {
                     b.HasBaseType("Milio.API.Models.User");
 
-                    b.Property<int?>("NumberOfChildren")
-                        .HasColumnType("int");
+                    b.Property<string>("Address")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasDiscriminator().HasValue("Client");
                 });
@@ -324,6 +382,24 @@ namespace Milio.API.Migrations
                     b.HasOne("Milio.API.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Milio.API.Models.Appointment", b =>
+                {
+                    b.HasOne("Milio.API.Models.Carer", "Carer")
+                        .WithMany("Appointments")
+                        .HasForeignKey("CarerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Milio.API.Models.Document", b =>
+                {
+                    b.HasOne("Milio.API.Models.Carer", "Carer")
+                        .WithOne("Document")
+                        .HasForeignKey("Milio.API.Models.Document", "CarerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

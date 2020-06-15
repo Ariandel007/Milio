@@ -23,6 +23,8 @@ namespace Milio.API.Dtos
         [Required]
         public string Country { get; set; }
         public DateTime Created { get; set; }
+        public string Address { get; set; }
+        public float FareForHour { get; set; }
         public DateTime LastActive { get; set; }
 
         public UserForRegisterDto()

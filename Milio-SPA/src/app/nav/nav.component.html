@@ -31,12 +31,12 @@
       </ul>
 
       <ul *ngIf="!loggedIn()" class="nav-large-elements">
-        <li class="btn"><a class="unete">Unete</a></li>
+        <li class="btn" routerLinkActive="active"><a  [routerLink]="['/register']" class="unete">Unete</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/login']" >Iniciar Sesion</a></li>
       </ul>
     </nav>
   </body>
-  <section *ngIf="menuBarActive">
+  <section *ngIf="menuBarActive"  id="un_section">
     <nav>
       <div class="container">
         <ul *ngIf="loggedIn()" class="list-group">
@@ -48,7 +48,7 @@
         </ul>
 
         <ul *ngIf="!loggedIn()">
-          <li class="btn"><a class="unete">Unete</a></li>
+          <li class="btn" routerLinkActive="active"><a  [routerLink]="['/register']" class="unete">Unete</a></li>
           <li routerLinkActive="active"><a [routerLink]="['/login']" >Iniciar Sesion</a></li>
         </ul>
       </div>
