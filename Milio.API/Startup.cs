@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Milio.API.Data;
 using Milio.API.Helpers;
 using Milio.API.Models;
@@ -87,6 +88,19 @@ namespace Milio.API
                 }
             );
 
+            //agregamos los servicios de swagger
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "Milio Documentación",
+                    Version = "v1",
+                    Description = "REST API  para el sistema de servicios de niñera: Milio",
+                    Contact = new OpenApiContact() {
+                        Name = "Alexander Urbina"
+                    }
+
+                });
+            });
+
             //services.AddControllers();
             services.AddCors();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
@@ -102,6 +116,14 @@ namespace Milio.API
             }
 
             app.UseHttpsRedirection();
+
+            // Crea un middleware para exponer la documentación en el JSON.
+            app.UseSwagger();
+            // Crea  un middleware para exponer el UI (HTML, JS, CSS, etc.),
+            // Especificamos en que endpoint buscara el json.
+            app.UseSwaggerUI(c => {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Milio Api V1");
+            });
 
             app.UseRouting();
 
