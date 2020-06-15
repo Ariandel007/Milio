@@ -19,8 +19,9 @@
             </button>
             <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
                 role="menu">
-              <li role="menuitem" routerLinkActive="active"><a class="dropdown-item sesion" [routerLink]="['/client/edit']">Mi Perfil</a></li>
-              <li role="menuitem"><a class="dropdown-item sesion" (click)="logout()">Cerrar Sesion</a></li>
+                <li *appHasRole="['Client']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
+                <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/carer/edit']" class="list-group-item">Mi Perfil</a></li>
+                <li role="menuitem"><a class="dropdown-item sesion" (click)="logout()">Cerrar Sesion</a></li>
             </ul>
           </div>
         </li>
@@ -41,7 +42,8 @@
         <ul *ngIf="loggedIn()" class="list-group">
           <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" class="list-group-item">Buscar Cuidadores</a></li>
           <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" class="list-group-item">Mensajes</a></li>
-          <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
+          <li *appHasRole="['Client']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
+          <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/carer/edit']" class="list-group-item">Mi Perfil</a></li>
           <li *appHasRole="['Admin', 'Client', 'Babysitter']"><a class="list-group-item" (click)="logout()">Cerrar Sesion</a></li>
         </ul>
 
