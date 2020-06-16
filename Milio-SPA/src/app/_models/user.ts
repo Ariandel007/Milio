@@ -13,4 +13,5 @@ export interface User {
   country: string;
   aboutMe?: string;
   photos?: Photo[];
+  dateOfBirth?: Date;
 }

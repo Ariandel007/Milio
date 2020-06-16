@@ -8,7 +8,7 @@ namespace Milio.API.Dtos
         [Required]
         public string UserName { get; set; }
         [Required]
-        [StringLength(8, MinimumLength = 4, ErrorMessage = "Debes especificar una contraseña entre 4 y 8 caracteres")]
+        [StringLength(16, MinimumLength = 4, ErrorMessage = "Debes especificar una contraseña entre 4 y 16 caracteres")]
         public string Password { get; set; }
         [Required]
         public string Gender { get; set; }

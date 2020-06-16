@@ -11,6 +11,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { MessagesComponent } from './messages/messages.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './_services/auth.service';
 import { CarerListComponent } from './carers/carer-list/carer-list.component';
@@ -66,6 +67,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       RouterModule.forRoot(appRoutes),
       BsDropdownModule.forRoot(),
       BrowserAnimationsModule,
+      BsDatepickerModule.forRoot(),
       ToastrModule.forRoot(), // ToastrModule added
    ],
    providers: [

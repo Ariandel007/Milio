@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from '../_models/user';
 import {map} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Carer } from '../_models/carer';
+import { Client } from '../_models/client';
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +36,12 @@ export class AuthService {
     );
   }
 
-  registerClient(user: User) {
-    return this.http.post(this.baseUrl + 'registerClient', user);
+  registerClient(client: Client) {
+    return this.http.post(this.baseUrl + 'registerClient', client);
   }
 
-  registerCarer(user: User) {
-    return this.http.post(this.baseUrl + 'registerCarer', user);
+  registerCarer(carer: Carer) {
+    return this.http.post(this.baseUrl + 'registerCarer', carer);
   }
 
   loggedIn() {

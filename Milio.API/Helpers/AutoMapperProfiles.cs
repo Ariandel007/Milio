@@ -25,6 +25,9 @@ namespace Milio.API.Helpers
 
             CreateMap<Photo, PhotosForDetailedDto>();
             CreateMap<UserForRegisterDto, User>();
+            CreateMap<UserForRegisterDto, Client>();
+            CreateMap<UserForRegisterDto, Carer>();
+
         }
     }
 }

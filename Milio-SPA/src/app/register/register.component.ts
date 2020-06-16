@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
-import { User } from '../_models/user';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Client } from '../_models/client';
+import { Carer } from '../_models/carer';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +13,12 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User;
-  registerForm: FormGroup;
+
+  client: Client;
+  carer: Carer;
+  registerFormClient: FormGroup;
+  registerFormCarer: FormGroup;
+  bsConfig: Partial<BsDatepickerConfig>;
 
 
   constructor(private toastr: ToastrService,
@@ -20,16 +26,89 @@ export class RegisterComponent implements OnInit {
               private authService: AuthService,
               private fb: FormBuilder) { }
 
+
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl(),
-      confirmPassword: new FormControl()
-    });
+    this.bsConfig = {
+      containerClass: 'theme-red'
+    };
+
+    this.createRegisterFormClient();
+    this.createRegisterFormCarer();
   }
 
-  register(): void {
-    console.log(this.registerForm.value);
+  createRegisterFormClient(): void {
+    this.registerFormClient = this.fb.group(
+      {
+        userName: ['', Validators.required],
+        name: ['', Validators.required],
+        lastName: ['', Validators.required],
+        gender: ['male'],
+        dateOfBirth: [null, Validators.required],
+        city: ['', Validators.required],
+        country: ['', Validators.required],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(16)
+          ]
+        ],
+        confirmPassword: ['', Validators.required],
+        address: ['', Validators.required]
+      },
+      { validator: this.passwordMatchValidator }
+    );
+  }
+
+  createRegisterFormCarer(): void {
+    this.registerFormCarer = this.fb.group(
+      {
+        userName: ['', Validators.required],
+        name: ['', Validators.required],
+        lastName: ['', Validators.required],
+        gender: ['male'],
+        dateOfBirth: [null, Validators.required],
+        city: ['', Validators.required],
+        country: ['', Validators.required],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(16)
+          ]
+        ],
+        confirmPassword: ['', Validators.required],
+        fareForHour: ['', Validators.required]
+      },
+      { validator: this.passwordMatchValidator }
+    );
+  }
+
+  passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch: true };
+  }
+
+  registerClient(): void {
+    if (this.registerFormClient.valid) {
+      //copia en profundidad
+      this.client = Object.assign({}, this.registerFormClient.value);
+
+      this.authService.registerClient(this.client).subscribe(
+        () => {
+          this.toastr.success('Registro exitoso');
+        },
+        error => {
+          this.toastr.error(error);
+        },
+        () => {
+          this.authService.login(this.client).subscribe(() => {
+            this.router.navigate(['/messages']);
+          });
+        }
+      );
+    }
   }
 
 }
