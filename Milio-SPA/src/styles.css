@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Disable AOS delay on mobile
+# Deshabilitar el retraso de AOS en el móvil
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
@@ -146,9 +146,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Navigation Menu
+# Menu de Navegacion
 --------------------------------------------------------------*/
-/* Desktop Navigation */
+/* Navegacion escritorio */
 .nav-menu, .nav-menu * {
   margin: 0;
   padding: 0;
@@ -258,7 +258,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Mobile Navigation */
+/* Navegacion Mobil */
 .mobile-nav-toggle {
   position: fixed;
   right: 15px;
@@ -368,7 +368,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Hero Section
+# Hero
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
@@ -511,7 +511,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Sections General
+# Seccion General
 --------------------------------------------------------------*/
 section {
   padding: 60px 0;
