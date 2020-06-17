@@ -35,7 +35,7 @@ namespace Milio.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
+        public async Task<IActionResult> GetCarers([FromQuery]UserParams userParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
@@ -43,20 +43,12 @@ namespace Milio.API.Controllers
 
             userParams.UserId = currentUserId;
 
-            // if (!string.IsNullOrEmpty(userParams.Gender))
-            // {
-            //     userParams.Gender = (userFromRepo.Gender == "male") ? "female" : "male";
-            // }
-            
-
-            var users = await _repo.GetUsers(userParams);
+            var users = await _repo.GetCarers(userParams);
     
             var usersToReturn = _mapper.Map<IEnumerable<CarerForListDto>>(users);
 
             //esto esta en el extensions
-            Response.AddPagination(users.CurrentPage, users.PageSize,
-                users.TotalCount, users.TotalPages);
-            
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
             return Ok(usersToReturn);
         }

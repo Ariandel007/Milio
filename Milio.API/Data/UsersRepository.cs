@@ -33,7 +33,7 @@ namespace Milio.API.Data
             return user;
         }
 
-        public async Task<PagedList<User>> GetUsers(UserParams userParams)
+        public async Task<PagedList<User>> GetCarers(UserParams userParams)
         {
             //No vamos a ejecutar este metodo a este tiempo razon por la cual no usaremos el
             //await operation async aca
@@ -53,6 +53,9 @@ namespace Milio.API.Data
 
                 users = users.Where(u => u.DateOfBirth >= minDoB && u.DateOfBirth <= maxDoB);
             }
+
+            if (userParams.MinFareForHour != 1.0f || userParams.MaxFareForHour != 9999.0f)
+                users = users.Where(u => u.FareForHour >= userParams.MinFareForHour && u.FareForHour <= userParams.MaxFareForHour);
 
             if(!string.IsNullOrEmpty(userParams.OrderBy))
             {

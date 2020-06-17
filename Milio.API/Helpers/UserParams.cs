@@ -18,5 +18,8 @@ namespace Milio.API.Helpers
         public int MaxAge { get; set; } = 99;
 
         public string OrderBy { get; set; }
+        public float MinFareForHour { get; set; } = 1.0f;
+        public float MaxFareForHour { get; set; } = 9999.0f;
+
     }
 }
