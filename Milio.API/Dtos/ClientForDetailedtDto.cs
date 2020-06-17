@@ -17,6 +17,7 @@ namespace Milio.API.Dtos
         public string City { get; set; }
         public string Country { get; set; }
         public string PhotoUrl { get; set; }
+        public string Address { get; set; }
         public ICollection<PhotosForDetailedDto> Photos { get; set; }
     }
 }

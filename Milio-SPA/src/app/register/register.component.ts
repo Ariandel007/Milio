@@ -14,12 +14,13 @@ import { Carer } from '../_models/carer';
 })
 export class RegisterComponent implements OnInit {
 
+  iWantToBeCarer: boolean = false;
+
   client: Client;
   carer: Carer;
   registerFormClient: FormGroup;
   registerFormCarer: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
-
 
   constructor(private toastr: ToastrService,
               private router: Router,
@@ -109,6 +110,10 @@ export class RegisterComponent implements OnInit {
         }
       );
     }
+  }
+
+  toggleOptions(){
+    return this.iWantToBeCarer = !this.iWantToBeCarer;
   }
 
 }

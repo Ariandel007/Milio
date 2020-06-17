@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace Milio.API.Controllers
         }
 
         [Authorize(Policy = "RequireClientRole")]
-        [HttpGet("{id}", Name="GetUser")]
-        public async Task<IActionResult> GetUser(int id)
+        [HttpGet("getCarer/{id}", Name="GetCarer")]
+        public async Task<IActionResult> GetCarer(int id)
         {
             var user = await _repo.GetUser(id);
 
@@ -34,7 +35,18 @@ namespace Milio.API.Controllers
             return Ok(userToReturn);
         }
 
-        [HttpGet]
+        [Authorize(Policy = "RequireClientRole")]
+        [HttpGet("getClient/{id}", Name="GetClient")]
+        public async Task<IActionResult> GetClient(int id)
+        {
+            var user = await _repo.GetUser(id);
+
+            var userToReturn = _mapper.Map<ClientForDetailedtDto>(user);
+            
+            return Ok(userToReturn);
+        }
+
+        [HttpGet("carers")]
         public async Task<IActionResult> GetCarers([FromQuery]UserParams userParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -53,6 +65,37 @@ namespace Milio.API.Controllers
             return Ok(usersToReturn);
         }
         
+        [HttpPut("updateClient/{id}")]
+        public async Task<IActionResult> UpdateClient(int id, [FromBody]ClientForUpdateDto clientForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            
+            var userFromRepo = await _repo.GetUser(id);
+
+            _mapper.Map(clientForUpdateDto, userFromRepo);
+
+            if ( await _repo.SaveAll())
+                return NoContent();
+            
+            throw new Exception("$Updating client {id} failed on save");
+        }
+
+        [HttpPut("updateCarer/{id}")]
+        public async Task<IActionResult> UpdateCarer(int id, [FromBody]CarerForUpdateDto carerForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            
+            var userFromRepo = await _repo.GetUser(id);
+
+            _mapper.Map(carerForUpdateDto, userFromRepo);
+
+            if ( await _repo.SaveAll())
+                return NoContent();
+            
+            throw new Exception("$Updating carer {id} failed on save");
+        }
     }
 
 }

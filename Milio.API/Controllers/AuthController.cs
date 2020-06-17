@@ -49,10 +49,7 @@ namespace Milio.API.Controllers
             {
                 await _userManager.AddToRoleAsync(userToCreate, "Client");
 
-                return Ok();
-                // esto lo aplicaremos cuando el controlador de usuarios este bien hecho
-                // return CreatedAtRoute("GetUser", new {controller = "Users", 
-                //    id = userToCreate.Id}, userToReturn);
+                return CreatedAtRoute("GetClient", new {controller = "Users", id = userToCreate.Id}, userToReturn);
             }
 
             return BadRequest(result.Errors);
@@ -71,10 +68,7 @@ namespace Milio.API.Controllers
             {
                 await _userManager.AddToRoleAsync(userToCreate, "Babysitter");
 
-                return Ok();
-                // esto lo aplicaremos cuando el controlador de usuarios este bien hecho
-                // return CreatedAtRoute("GetUser", new {controller = "Users", 
-                //    id = userToCreate.Id}, userToReturn);
+                return CreatedAtRoute("GetCarer", new {controller = "Users", id = userToCreate.Id}, userToReturn);
             }
 
             return BadRequest(result.Errors);
