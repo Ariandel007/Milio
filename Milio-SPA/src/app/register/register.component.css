@@ -337,6 +337,7 @@ select {
 .buttonToggle{
   background-color: rgb(19, 19, 19);
   color: #ebebeb;
+  border-radius: 12px;
   font-size: 80%;
   margin-top: 10%;
   margin-left: 12%;

@@ -116,7 +116,6 @@ export class RegisterComponent implements OnInit {
     if (this.registerFormCarer.valid) {
       //copia en profundidad
       this.carer = Object.assign({}, this.registerFormCarer.value);
-      console.log(this.carer);
       this.authService.registerCarer(this.carer).subscribe(
         () => {
           this.toastr.success('Registro exitoso');
