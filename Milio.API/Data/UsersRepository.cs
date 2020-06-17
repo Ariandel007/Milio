@@ -1,5 +1,8 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Milio.API.Helpers;
 using Milio.API.Models;
 
 namespace Milio.API.Data
@@ -30,10 +33,43 @@ namespace Milio.API.Data
             return user;
         }
 
-        // public Task<PagedList<User>> GetUsers(UserParams userParams)
-        // {
-        //     throw new System.NotImplementedException();
-        // }
+        public async Task<PagedList<User>> GetUsers(UserParams userParams)
+        {
+            //No vamos a ejecutar este metodo a este tiempo razon por la cual no usaremos el
+            //await operation async aca
+            //solo consultaremos a los cuidadores
+            var users = _context.Carers.Include(p => p.Photos).OrderByDescending(u => u.LastActive).AsQueryable();
+
+            users= users.Where(u => u.Id != userParams.UserId);
+
+            if(userParams.Gender != null)
+                users= users.Where(u => u.Gender == userParams.Gender);
+            
+            //si la busqueda no esta en default
+            if (userParams.MinAge != 18 || userParams.MaxAge != 99)
+            {
+                var minDoB = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+                var maxDoB = DateTime.Today.AddYears(-userParams.MinAge);
+
+                users = users.Where(u => u.DateOfBirth >= minDoB && u.DateOfBirth <= maxDoB);
+            }
+
+            if(!string.IsNullOrEmpty(userParams.OrderBy))
+            {
+                switch (userParams.OrderBy)
+                {
+                    case "created":
+                        users = users.OrderByDescending(u => u.Created);
+                        break;
+                    default:
+                        users = users.OrderByDescending(u => u.LastActive);
+                        break;
+                }
+            }
+
+            //aca si utilizamos el await y provvereomos el soruce
+            return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
+        }
 
         public async Task<bool> SaveAll()
         {

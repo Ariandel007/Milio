@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Milio.API.Data;
 using Milio.API.Dtos;
+using Milio.API.Helpers;
 
 namespace Milio.API.Controllers
 {
@@ -29,6 +32,33 @@ namespace Milio.API.Controllers
             var userToReturn = _mapper.Map<CarerForDetailedtDto>(user);
             
             return Ok(userToReturn);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var userFromRepo = await _repo.GetUser(currentUserId);
+
+            userParams.UserId = currentUserId;
+
+            // if (!string.IsNullOrEmpty(userParams.Gender))
+            // {
+            //     userParams.Gender = (userFromRepo.Gender == "male") ? "female" : "male";
+            // }
+            
+
+            var users = await _repo.GetUsers(userParams);
+    
+            var usersToReturn = _mapper.Map<IEnumerable<CarerForListDto>>(users);
+
+            //esto esta en el extensions
+            Response.AddPagination(users.CurrentPage, users.PageSize,
+                users.TotalCount, users.TotalPages);
+            
+
+            return Ok(usersToReturn);
         }
         
     }
