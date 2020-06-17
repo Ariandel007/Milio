@@ -62,7 +62,7 @@ namespace Milio.API.Controllers
 
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
 
-            var userToReturn = _mapper.Map<ClientForDetailedtDto>(userToCreate);
+            var userToReturn = _mapper.Map<CarerForDetailedtDto>(userToCreate);
 
             if (result.Succeeded)
             {

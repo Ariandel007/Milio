@@ -5,7 +5,7 @@
               <img id="un_img" src="../../assets/images/signup-img.jpg" alt="">
           </div>
           <div class="signup-form" *ngIf="!iWantToBeCarer">
-              <button (click)="toggleOptions()">Registrarse como Cuidador</button>
+              <button (click)="toggleOptions()" class="btn buttonToggle">Registrarse como Cuidador</button>
 
               <form [formGroup]="registerFormClient" (ngSubmit)="registerClient()" class="register-form" id="register-form">
 
@@ -35,10 +35,6 @@
                     <input type="password" class="form-control"  formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" required/>
                     <div class="invalid-feedback"*ngIf="registerFormClient.get('confirmPassword').hasError('required') &&registerFormClient.get('confirmPassword').touched">Es requerido confirmar la contraseña</div>
                   </div>
-                  <!-- <div class="form-group">
-                    <label>Celular :</label>
-                    <input type="text" name="cellphone" id="cellphone" required/>
-                  </div> -->
                   <div class="form-radio">
                       <label class="radio-label">Genero :</label>
                       <div class="form-radio-item">
@@ -74,12 +70,7 @@
                     <input type="text" formControlName="address" name="address" id="address" required [ngClass]="{'is-invalid':registerFormClient.get('address').errors &&registerFormClient.get('address').touched}"/>
                     <div class="invalid-feedback"*ngIf="registerFormClient.get('address').touched && registerFormClient.get('address').hasError('required')">Poner la direccion es requerido</div>
                   </div>
-                  <!-- <div class="form-group">
-                    <label>Costo por Hora :</label>
-                    <input type="text" formControlName="fareForHour" name="fareForHour" id="fareForHour" required/>
-                  </div> -->
                   <div class="form-submit">
-                      <!-- <input type="submit" value="Resetear" class="submit" name="reset" id="reset" /> -->
                       <input type="submit" [disabled]="!registerFormClient.valid" value="Registrarse" class="submit" name="submit" id="submit" />
                   </div>
 
@@ -87,79 +78,74 @@
           </div>
           <!-- aca esta el registro como cuidador -->
           <div class="signup-form" *ngIf="iWantToBeCarer">
-            <button (click)="toggleOptions()">Registrarse como Cliente</button>
+            <button (click)="toggleOptions()" class="btn buttonToggle">Registrarse como Cliente</button>
 
-            <form [formGroup]="registerFormClient" (ngSubmit)="registerClient()" class="register-form" id="register-form">
+            <form [formGroup]="registerFormCarer" (ngSubmit)="registerCarer()" class="register-form" id="register-form">
 
-                <h2>Registro de Cuidador</h2>
-                <div class="form-group">
-                  <label>Nombre de usuario :</label>
-                  <input type="text" class="form-control"  formControlName="userName" name="userName" id="userName" required [ngClass]="{'is-invalid':registerFormClient.get('userName').errors &&registerFormClient.get('userName').touched}"/>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nombres :</label>
-                        <input type="text" formControlName="name" name="name" id="name" required [ngClass]="{'is-invalid':registerFormClient.get('name').errors &&registerFormClient.get('name').touched}"/>
-                        <div class="invalid-feedback"*ngIf="registerFormClient.get('name').touched && registerFormClient.get('name').hasError('required')">El nombre es requerido</div>
-                    </div>
-                    <div class="form-group">
-                        <label>Apellidos :</label>
-                        <input type="text" formControlName="lastName" name="lastName" id="lastName" required [ngClass]="{'is-invalid':registerFormClient.get('lastName').errors &&registerFormClient.get('lastName').touched}"/>
-                        <div class="invalid-feedback"*ngIf="registerFormClient.get('lastName').touched && registerFormClient.get('lastName').hasError('required')">El apellido es requerido</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <label>Contraseña:</label>
-                  <input type="password" class="form-control"  formControlName="password" name="password" id="password" required/>
-                </div>
-                <div class="form-group">
-                  <label>Confirmar Contraseña:</label>
-                  <input type="password" class="form-control"  formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" required/>
-                  <div class="invalid-feedback"*ngIf="registerFormClient.get('confirmPassword').hasError('required') &&registerFormClient.get('confirmPassword').touched">Es requerido confirmar la contraseña</div>
-                </div>
-                <!-- <div class="form-group">
-                  <label>Celular :</label>
-                  <input type="text" name="cellphone" id="cellphone" required/>
-                </div> -->
-                <div class="form-radio">
-                    <label class="radio-label">Genero :</label>
-                    <div class="form-radio-item">
-                        <input type="radio" name="gender" id="male" checked>
-                        <label for="male">Hombre</label>
-                        <span class="check"></span>
-                    </div>
-                    <div class="form-radio-item">
-                        <input type="radio" name="gender" id="female">
-                        <label for="female">Mujer</label>
-                        <span class="check"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <input
-                    [ngClass]="{ 'is-invalid': registerFormClient.get('dateOfBirth').errors && registerFormClient.get('dateOfBirth').touched }"
-                    class="form-control" placeholder="Fecha de nacimiento" formControlName="dateOfBirth" type="text" bsDatepicker [bsConfig]="bsConfig"
-                  />
-                  <div class="invalid-feedback" *ngIf="registerFormClient.get('dateOfBirth').touched && registerFormClient.get('dateOfBirth').hasError('required')">La fecha de nacimiento es requerida</div>
-                </div>
-                <div class="form-group">
-                    <label>Pais :</label>
-                    <input type="text" formControlName="country" name="country" id="country" required [ngClass]="{'is-invalid':registerFormClient.get('country').errors &&registerFormClient.get('country').touched}"/>
-                    <div class="invalid-feedback"*ngIf="registerFormClient.get('country').touched && registerFormClient.get('country').hasError('required')">Poner el pais es requerido</div>
-                </div>
-                <div class="form-group">
-                    <label>Ciudad :</label>
-                    <input type="text" formControlName="city" name="city" id="city" required [ngClass]="{'is-invalid':registerFormClient.get('city').errors &&registerFormClient.get('city').touched}"/>
-                    <div class="invalid-feedback"*ngIf="registerFormClient.get('city').touched && registerFormClient.get('city').hasError('required')">Poner la ciudad es requerido</div>
-                </div>
-                <div class="form-group">
-                  <label>Costo por Hora :</label>
-                  <input type="text" formControlName="fareForHour" name="fareForHour" id="fareForHour" required/>
-                </div>
-                <div class="form-submit">
-                    <!-- <input type="submit" value="Resetear" class="submit" name="reset" id="reset" /> -->
-                    <input type="submit" [disabled]="!registerFormClient.valid" value="Registrarse" class="submit" name="submit" id="submit" />
-                </div>
-
+              <h2>Registro de Cuidador</h2>
+              <div class="form-group">
+                <label>Nombre de usuario :</label>
+                <input type="text" class="form-control"  formControlName="userName" name="userName" id="userName" required [ngClass]="{'is-invalid':registerFormCarer.get('userName').errors &&registerFormCarer.get('userName').touched}"/>
+              </div>
+              <div class="form-row">
+                  <div class="form-group">
+                      <label>Nombres :</label>
+                      <input type="text" formControlName="name" name="name" id="name" required [ngClass]="{'is-invalid':registerFormCarer.get('name').errors &&registerFormCarer.get('name').touched}"/>
+                      <div class="invalid-feedback"*ngIf="registerFormCarer.get('name').touched && registerFormCarer.get('name').hasError('required')">El nombre es requerido</div>
+                  </div>
+                  <div class="form-group">
+                      <label>Apellidos :</label>
+                      <input type="text" formControlName="lastName" name="lastName" id="lastName" required [ngClass]="{'is-invalid':registerFormCarer.get('lastName').errors &&registerFormCarer.get('lastName').touched}"/>
+                      <div class="invalid-feedback"*ngIf="registerFormCarer.get('lastName').touched && registerFormCarer.get('lastName').hasError('required')">El apellido es requerido</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" class="form-control"  formControlName="password" name="password" id="password" required/>
+              </div>
+              <div class="form-group">
+                <label>Confirmar Contraseña:</label>
+                <input type="password" class="form-control"  formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" required/>
+                <div class="invalid-feedback"*ngIf="registerFormCarer.get('confirmPassword').hasError('required') &&registerFormCarer.get('confirmPassword').touched">Es requerido confirmar la contraseña</div>
+              </div>
+              <div class="form-radio">
+                  <label class="radio-label">Genero :</label>
+                  <div class="form-radio-item">
+                      <input type="radio" name="gender" id="male" checked>
+                      <label for="male">Hombre</label>
+                      <span class="check"></span>
+                  </div>
+                  <div class="form-radio-item">
+                      <input type="radio" name="gender" id="female">
+                      <label for="female">Mujer</label>
+                      <span class="check"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                <input
+                  [ngClass]="{ 'is-invalid': registerFormCarer.get('dateOfBirth').errors && registerFormCarer.get('dateOfBirth').touched }"
+                  class="form-control" placeholder="Fecha de nacimiento" formControlName="dateOfBirth" type="text" bsDatepicker [bsConfig]="bsConfig"
+                />
+                <div class="invalid-feedback" *ngIf="registerFormCarer.get('dateOfBirth').touched && registerFormCarer.get('dateOfBirth').hasError('required')">La fecha de nacimiento es requerida</div>
+              </div>
+              <div class="form-group">
+                  <label>Pais :</label>
+                  <input type="text" formControlName="country" name="country" id="country" required [ngClass]="{'is-invalid':registerFormCarer.get('country').errors &&registerFormCarer.get('country').touched}"/>
+                  <div class="invalid-feedback" *ngIf="registerFormCarer.get('country').touched && registerFormCarer.get('country').hasError('required')">Poner el pais es requerido</div>
+              </div>
+              <div class="form-group">
+                  <label>Ciudad :</label>
+                  <input type="text" formControlName="city" name="city" id="city" required [ngClass]="{'is-invalid':registerFormCarer.get('city').errors &&registerFormCarer.get('city').touched}"/>
+                  <div class="invalid-feedback" *ngIf="registerFormCarer.get('city').touched && registerFormCarer.get('city').hasError('required')">Poner la ciudad es requerido</div>
+              </div>
+              <div class="form-group">
+                <label>Costo por Hora :</label>
+                <input type="text" formControlName="fareForHour" name="fareForHour" id="fareForHour" required [ngClass]="{'is-invalid':registerFormCarer.get('fareForHour').errors &&registerFormCarer.get('fareForHour').touched}"/>
+                <div class="invalid-feedback" *ngIf="registerFormCarer.get('city').touched && registerFormCarer.get('city').hasError('required')">Poner el costo por hora es requerido, podra ser cambiado luego</div>
+              </div>
+              <div class="form-submit">
+                  <input type="submit" [disabled]="!registerFormCarer.valid" value="Registrarse" class="submit" name="submit" id="submit" />
+              </div>
             </form>
           </div>
       </div>

@@ -112,6 +112,27 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  registerCarer(): void {
+    if (this.registerFormCarer.valid) {
+      //copia en profundidad
+      this.carer = Object.assign({}, this.registerFormCarer.value);
+      console.log(this.carer);
+      this.authService.registerCarer(this.carer).subscribe(
+        () => {
+          this.toastr.success('Registro exitoso');
+        },
+        error => {
+          this.toastr.error(error);
+        },
+        () => {
+          this.authService.login(this.carer).subscribe(() => {
+            this.router.navigate(['/messages']);
+          });
+        }
+      );
+    }
+  }
+
   toggleOptions(){
     return this.iWantToBeCarer = !this.iWantToBeCarer;
   }
