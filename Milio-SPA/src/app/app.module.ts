@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { HeroComponent } from './hero/hero.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { FooterComponent } from './footer/footer.component';
@@ -72,7 +73,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
       ToastrModule.forRoot(), // ToastrModule added
-      ButtonsModule.forRoot()
+      ButtonsModule.forRoot(),
+      PaginationModule.forRoot()
    ],
    providers: [
      AuthService,

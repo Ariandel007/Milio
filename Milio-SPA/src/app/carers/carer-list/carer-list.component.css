@@ -1,3 +1,39 @@
 .margin-list{
   margin-top: 10%;
 }
+
+.btn-apply-filters
+{
+  background-color: #e25b2e;
+  color: white;
+  border-radius: 12px;
+}
+
+.btn-apply-filters:hover
+{
+  background-color: #ff6835;
+  color: white;
+  border-radius: 12px;
+}
+
+.btn-reset-filters
+{
+  background-color: #ffffff;
+  color: rgb(46, 0, 0);
+  border-style: solid;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e25b2e;
+  border-radius: 12px;
+}
+
+.btn-reset-filters:hover
+{
+  background-color: #e25b2e;
+  color: white;
+  border-radius: 12px;
+}
+
+.btn-check{
+  margin-left: 10pt;
+}

@@ -37,34 +37,55 @@
               <input type="number" class="form-control ml-1" style="width: 70px" id="maxFareForHour" name="maxFareForHour"
                 [(ngModel)]="userParams.maxFareForHour" name="maxFareForHour">
             </div>
-            <div class="btn-group">
-              <label>Ordernar:</label>
-              <label class="btn btn-primary" [(ngModel)]="userParams.orderBy" btnRadio="lastActive" role="button"  [ngModelOptions]="{standalone: true}">Actividad</label>
-              <label class="btn btn-success" [(ngModel)]="userParams.orderBy" btnRadio="created" role="button"  [ngModelOptions]="{standalone: true}">Nuevos</label>
-              <label class="btn btn-warning" [(ngModel)]="userParams.orderBy" btnRadio="fare" role="button"  [ngModelOptions]="{standalone: true}">Tarifa</label>
+
+            <!-- <div class="btn-group checkbox-inline ">
+              <label><strong>Ordenar:</strong></label>
+              <label class="btn-check">Actividad
+                <input type="radio" checked="checked" name="radio"  [(ngModel)]="userParams.orderBy" btnRadio="lastActive">
+              </label>
+              <label class="btn-check">Nuevos
+                <input type="radio" name="radio" [(ngModel)]="userParams.orderBy" btnRadio="created">
+              </label>
+              <label class="btn-check">Tarifa
+                <input type="radio" name="radio" [(ngModel)]="userParams.orderBy" btnRadio="fare">
+              </label>
+            </div> -->
+            <div class="form-group px-2">
+              <label for="gender">Ordenar: </label>
+              <select class="form-control ml-1" style="width: 130px" id="orderBy"
+                [(ngModel)]="userParams.orderBy" name="orderBy">
+                <option *ngFor="let filter of filterList" [value]="filter.value">
+                  {{filter.display}}
+                </option>
+              </select>
             </div>
+
           </div>
 
-          <button type="submit" class="btn btn-primary" style="margin-left:10px">Aplicar Filtros</button>
-          <button type="button" class="btn btn-info"
-          (click)="resetFilters()" style="margin-left:10px">Resetear Filtros</button>
+          <button type="submit" class="btn btn-apply-filters" style="margin-left:10px">Aplicar Filtros</button>
+          <button type="button" class="btn btn-reset-filters" (click)="resetFilters()" style="margin-left:10px">Resetear Filtros</button>
           <br/>
-<!--
-          <div class="btn-group"> Ordenar por:
-            <label class="btn btn-primary" [(ngModel)]="userParams.orderBy" btnRadio="lastActive" role="button"  [ngModelOptions]="{standalone: true}">Ultima Actividad</label>
-            <label class="btn btn-success" [(ngModel)]="userParams.orderBy" btnRadio="created" role="button"  [ngModelOptions]="{standalone: true}">Miembros Nuevos</label>
-            <label class="btn btn-warning" [(ngModel)]="userParams.orderBy" btnRadio="fare" role="button"  [ngModelOptions]="{standalone: true}">Ordenar por Tarifa</label>
-          </div> -->
 
         </form>
         <br/>
 
         <!-- Inicio del div de los card -->
         <div class="row">
-          <div *ngFor="let carer of carers" class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div *ngFor="let carer of carers" class="col-lg-3 col-md-6 d-flex align-items-stretch justify-content-center">
               <app-carer-card [carer]="carer"></app-carer-card>
           </div>
         </div>
       </div>
+
+      <div class="d-flex justify-content-center">
+        <pagination [boundaryLinks]="true"
+                    [totalItems]="pagination.totalItems"
+                    [itemsPerPage]="pagination.itemsPerPage"
+                    [(ngModel)] = "pagination.currentPage"
+                    (pageChanged)="pageChanged($event)"
+          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+      </pagination>
+      </div>
+
 
 </section>

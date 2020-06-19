@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CarerListComponent implements OnInit {
   carers: Carer[];
   genderList = [{value: 'male', display: 'Hombres'}, {value: 'female', display: 'Mujeres'}, {value: '', display: 'Todos'}];
+  filterList = [{value: 'lastActive', display: 'Actividad'}, {value: 'created', display: 'Nuevos'}, {value: 'fare', display: 'Tarifa'}];
   userParams: any = {};
   pagination: Pagination;
 

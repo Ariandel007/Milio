@@ -31,6 +31,11 @@
       </ul>
 
       <ul *ngIf="!loggedIn()">
+        <li  class="derecha" >
+          <label  class="logo mr-auto logo-pointer" [routerLink]="['/']"><img src="../../assets/images/logo-milio.jpg"></label>
+          <label  class="logo mr-auto logo-pointer" [routerLink]="['/']"> <h1 class="text-dark">Milio</h1></label>
+        </li>
+
         <li id="un_large_section" class="btn" routerLinkActive="active"><a  [routerLink]="['/register']" class="unete">Unete</a></li>
         <li id="un_large_section" routerLinkActive="active"><a [routerLink]="['/login']" >Iniciar Sesion</a></li>
       </ul>
@@ -53,22 +58,3 @@
 
     </nav>
   </div>
-  <!-- <nav *ngIf="menuBarActive"  id="un_section">
-    <nav>
-      <div class="container">
-
-        <ul *ngIf="loggedIn()" class="list-group">
-          <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" class="list-group-item">Buscar Cuidadores</a></li>
-          <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" class="list-group-item">Mensajes</a></li>
-          <li *appHasRole="['Client']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
-          <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/carer/edit']" class="list-group-item">Mi Perfil</a></li>
-          <li *appHasRole="['Admin', 'Client', 'Babysitter']"><a class="list-group-item" (click)="logout()">Cerrar Sesion</a></li>
-        </ul>
-
-        <ul *ngIf="!loggedIn()">
-          <li class="btn" routerLinkActive="active"><a  [routerLink]="['/register']" class="unete">Unete</a></li>
-          <li routerLinkActive="active"><a [routerLink]="['/login']" >Iniciar Sesion</a></li>
-        </ul>
-      </div>
-    </nav>
-  </nav> -->
