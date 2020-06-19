@@ -1,3 +1,13 @@
-<p>
-  carer-card works!
-</p>
+  <div class="member" data-aos="fade-up" data-aos-delay="100">
+    <div class="member-img">
+      <!-- <img src="{{carer.photoUrl || '../../../assets/images/user.jpg'}}" width="255" height="186" class="img-fluid" alt=""> -->
+            <img src="{{carer.photoUrl || '../../../assets/images/user.jpg'}}" width="255" height="186" alt="">
+    </div>
+    <div class="member-info">
+      <h4>{{carer.name}} {{carer.lastName}}</h4>
+      <span>Tarifa por Hora: s/.{{carer.fareForHour}}</span>
+      <span>{{carer.city}}</span>
+      <span>{{carer.country}}</span>
+      <button class="btn btn-info">Contratar</button>
+    </div>
+  </div>

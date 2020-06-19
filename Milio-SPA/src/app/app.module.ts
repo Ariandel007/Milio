@@ -9,6 +9,7 @@ import { HeroComponent } from './hero/hero.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { FooterComponent } from './footer/footer.component';
 import { MessagesComponent } from './messages/messages.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -23,6 +24,8 @@ import { appRoutes } from './routes';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './_services/user.service';
+import { CarerListResolver } from './_resolvers/carer-list.resolver';
 
 
 export function tokenGetter() {
@@ -69,10 +72,13 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
       ToastrModule.forRoot(), // ToastrModule added
+      ButtonsModule.forRoot()
    ],
    providers: [
      AuthService,
-     AuthGuard
+     AuthGuard,
+     UserService,
+     CarerListResolver
    ],
    bootstrap: [
       AppComponent

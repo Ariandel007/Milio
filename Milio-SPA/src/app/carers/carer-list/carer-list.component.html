@@ -3,75 +3,68 @@
 
         <div class="section-title" data-aos="fade-up">
           <h2>Resultados de Busqueda</h2>
-          <p>ACA DEBERIAN ESTAR LOS FILTROS, ESTAN POR HACER</p>
         </div>
+        <form #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+          <div class="form-inline" >
+            <div class="form-group ">
+              <label for="minAge">Edad de:</label>
+              <input type="number" class="form-control ml-1" style="width: 70px" id="minAge" name="minAge"
+                [(ngModel)]="userParams.minAge" name="minAge">
+            </div>
+
+            <div class="form-group px-2">
+              <label for="maxAge">hasta:</label>
+              <input type="number" class="form-control ml-1" style="width: 70px" id="maxAge" name="maxAge"
+                [(ngModel)]="userParams.maxAge" name="maxAge">
+            </div>
+            <div class="form-group px-2">
+              <label for="gender">Genero: </label>
+              <select class="form-control ml-1" style="width: 130px" id="gender"
+                [(ngModel)]="userParams.gender" name="gender">
+                <option *ngFor="let gender of genderList" [value]="gender.value">
+                  {{gender.display}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="minFareForHour">Tarifa desde: </label>
+              <input type="number" class="form-control ml-1" style="width: 70px" id="minFareForHour" name="minFareForHour"
+                [(ngModel)]="userParams.minFareForHour" name="minAge">
+            </div>
+
+            <div class="form-group px-2">
+              <label for="maxFareForHour">hasta:</label>
+              <input type="number" class="form-control ml-1" style="width: 70px" id="maxFareForHour" name="maxFareForHour"
+                [(ngModel)]="userParams.maxFareForHour" name="maxFareForHour">
+            </div>
+            <div class="btn-group">
+              <label>Ordernar:</label>
+              <label class="btn btn-primary" [(ngModel)]="userParams.orderBy" btnRadio="lastActive" role="button"  [ngModelOptions]="{standalone: true}">Actividad</label>
+              <label class="btn btn-success" [(ngModel)]="userParams.orderBy" btnRadio="created" role="button"  [ngModelOptions]="{standalone: true}">Nuevos</label>
+              <label class="btn btn-warning" [(ngModel)]="userParams.orderBy" btnRadio="fare" role="button"  [ngModelOptions]="{standalone: true}">Tarifa</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-left:10px">Aplicar Filtros</button>
+          <button type="button" class="btn btn-info"
+          (click)="resetFilters()" style="margin-left:10px">Resetear Filtros</button>
+          <br/>
+<!--
+          <div class="btn-group"> Ordenar por:
+            <label class="btn btn-primary" [(ngModel)]="userParams.orderBy" btnRadio="lastActive" role="button"  [ngModelOptions]="{standalone: true}">Ultima Actividad</label>
+            <label class="btn btn-success" [(ngModel)]="userParams.orderBy" btnRadio="created" role="button"  [ngModelOptions]="{standalone: true}">Miembros Nuevos</label>
+            <label class="btn btn-warning" [(ngModel)]="userParams.orderBy" btnRadio="fare" role="button"  [ngModelOptions]="{standalone: true}">Ordenar por Tarifa</label>
+          </div> -->
+
+        </form>
+        <br/>
 
         <!-- Inicio del div de los card -->
         <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up">
-              <div class="member-img">
-                <img src="" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Tarifa por Hora: s/.30</span>
-                <span>Lima</span>
-                <span>Peru</span>
-                <button class="btn btn-info">Contratar</button>
-              </div>
-            </div>
+          <div *ngFor="let carer of carers" class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <app-carer-card [carer]="carer"></app-carer-card>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Tarifa por Hora: s/.17</span>
-                <span>Lima</span>
-                <span>Peru</span>
-                <button class="btn btn-info">Contratar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Tarifa por Hora: s/.23</span>
-                <span>Lima</span>
-                <span>Peru</span>
-                <button class="btn btn-info">Contratar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Tarifa por Hora: s/.33</span>
-                <span>Lima</span>
-                <span>Peru</span>
-                <button class="btn btn-info">Contratar</button>
-              </div>
-            </div>
-          </div>
-
         </div>
-        <!-- Fin del div de los card -->
-
-
       </div>
+
 </section>

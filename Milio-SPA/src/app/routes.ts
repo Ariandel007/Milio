@@ -5,6 +5,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CarerListResolver } from './_resolvers/carer-list.resolver';
 
 
 export const appRoutes: Routes = [
@@ -15,7 +16,7 @@ export const appRoutes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      {path: 'carers', component: CarerListComponent, data: {roles: ['Admin', 'Client']}},
+      {path: 'carers', component: CarerListComponent, data: {roles: ['Admin', 'Client']}, resolve: {carers: CarerListResolver}},
       {path: 'messages', component: MessagesComponent, data: {roles: ['Admin', 'Client', 'Babysitter']}},
     ]
   },

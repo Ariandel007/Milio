@@ -64,6 +64,9 @@ namespace Milio.API.Data
                     case "created":
                         users = users.OrderByDescending(u => u.Created);
                         break;
+                    case "fare":
+                        users = users.OrderBy(u => u.FareForHour);
+                        break;
                     default:
                         users = users.OrderByDescending(u => u.LastActive);
                         break;
