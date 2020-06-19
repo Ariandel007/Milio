@@ -31,9 +31,8 @@ export class CarerListComponent implements OnInit {
     this.userParams.minAge = 18;
     this.userParams.maxAge = 99;
     this.userParams.orderBy = 'lastActive';
-    this.userParams.minFareForHour = 0.0;
-    this.userParams.maxFareForHour = 999.0;
-
+    this.userParams.minFareForHour = 1.0;
+    this.userParams.maxFareForHour = 99.0;
   }
 
   pageChanged(event: any): void {

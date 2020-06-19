@@ -39,6 +39,11 @@ namespace Milio.API.Controllers
         [HttpPost("registerClient")]
         public async Task<IActionResult> RegisterClient(UserForRegisterDto userForRegisterDto)
         {
+            //comprobamos que sea mayor de edad
+            if(!this.userIsOverEighteen(userForRegisterDto.DateOfBirth))
+                return BadRequest("users should be over 18 years old");
+
+            //si es mayor de edad mapeamos el body, lo mapeamos a la entidad carer para luego asignarle un rol en la db
             var userToCreate = _mapper.Map<Client>(userForRegisterDto);
 
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
@@ -58,6 +63,11 @@ namespace Milio.API.Controllers
         [HttpPost("registerCarer")]
         public async Task<IActionResult> RegisterCarer(UserForRegisterDto userForRegisterDto)
         {
+            //comprobamos que sea mayor de edad
+            if(!this.userIsOverEighteen(userForRegisterDto.DateOfBirth))
+                return BadRequest("users should be over 18 years old");
+            
+            //si es mayor de edad mapeamos el body, lo mapeamos a la entidad carer para luego asignarle un rol en la db
             var userToCreate = _mapper.Map<Carer>(userForRegisterDto);
 
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
@@ -132,6 +142,19 @@ namespace Milio.API.Controllers
             var token = tokenHandler.CreateToken(tokenDesciptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        private bool userIsOverEighteen(DateTime birthDay)
+        {
+            var age = DateTime.Today.Year - birthDay.Year;
+
+            if (birthDay.AddYears(age) > DateTime.Today)
+                age--;
+
+            if(age >=18)
+                return true;
+
+            return false;
         }
         
     }

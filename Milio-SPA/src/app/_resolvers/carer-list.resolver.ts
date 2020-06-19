@@ -10,7 +10,7 @@ import { Carer } from '../_models/carer';
 @Injectable()
 export class CarerListResolver implements Resolve<Carer[]> {
   pageNumber = 1;
-  pageSize = 5;
+  pageSize = 8;
 
   constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) {}
     resolve(route: ActivatedRouteSnapshot): Observable<Carer[]> {
