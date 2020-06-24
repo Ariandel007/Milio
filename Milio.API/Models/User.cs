@@ -19,6 +19,9 @@ namespace Milio.API.Models
         //lo hacemos virtual para habilitar lazy loading
         public virtual ICollection<Photo> Photos { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Message> MessagesSent { get; set; }
+        public virtual ICollection<Message> MessagesReceived { get; set; }
+
         
     }
 

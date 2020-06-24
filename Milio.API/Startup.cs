@@ -66,6 +66,7 @@ namespace Milio.API
                     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
                     options.AddPolicy("RequireClientRole", policy => policy.RequireRole("Client"));
                     options.AddPolicy("RequireBabysitterRole", policy => policy.RequireRole("Babysitter"));
+                    options.AddPolicy("RequireUserRole", policy => policy.RequireRole("Client", "Babysitter", "Admin"));
                 });           
 
 
@@ -105,6 +106,8 @@ namespace Milio.API
             services.AddCors();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IMessagesRepository, MessagesRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

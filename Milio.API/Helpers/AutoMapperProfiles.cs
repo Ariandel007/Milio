@@ -33,6 +33,9 @@ namespace Milio.API.Helpers
             CreateMap<UserForRegisterDto, Client>();
             CreateMap<UserForRegisterDto, Carer>();
 
+            CreateMap<MessageForCreationDto, Message>();
+            CreateMap<Message, MessageToReturnDto>();
+
         }
     }
 }
