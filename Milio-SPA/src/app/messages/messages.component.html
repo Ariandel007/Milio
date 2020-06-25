@@ -1,3 +1,81 @@
-<p>
-  messages works!
-</p>
+<!-- Toolbar -->
+
+
+  <div class="container">
+    <h3 class=" text-center">Mensajes</h3>
+    <div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="channel_heading">
+              <h4>Conversaciones</h4>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <!-- <div class="channels" *ngFor="let channel of channelList">
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_ib">
+                    <h5>
+                      {{ channel.data.name }}
+                    </h5>
+                    <p>
+                      {{
+                        channel.state.messages[
+                          channel.state.messages.length - 1
+                        ].text
+                      }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="mesgs">
+          <div class="msg_history">
+            <li class="message">
+              <div
+
+              ></div>
+              <ng-template #incoming_msg>
+                <div class="incoming_msg">
+                  <div class="incoming_msg_img">
+                    <!-- <img
+                      src="aca deberia estar la url de la img cloudinary del usuario"
+                      alt="User avatar"
+                    /> -->
+                  </div>
+                  <div class="received_msg">
+                    <div class="received_withd_msg">
+                      <p>mensaje1/p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template #outgoing_msg>
+                <div class="outgoing_msg">
+                  <div class="sent_msg">
+                    <p>mensaje 2</p>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </div>
+          <div class="type_msg">
+            <form class="input_msg_write" >
+              <input
+                type="text"
+                class="write_msg"
+                placeholder="Escribe un mensaje..."
+                name="newMessage"
+              />
+              <button class="msg_send_btn" type="button">
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
