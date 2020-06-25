@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Milio.API.Data;
 using Milio.API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Milio.API.Helpers;
+using System.Collections.Generic;
 
 namespace Milio.API.Controllers
 {
@@ -67,6 +69,37 @@ namespace Milio.API.Controllers
             }
 
             throw new Exception("No se pudo crear el mensaje al guardar");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery]MessageParams messageParams)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            messageParams.UserId = userId;
+
+            var messagesFromRepo = await _messageRepo.GetMessagesForUser(messageParams);
+
+            var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            Response.AddPagination(messagesFromRepo.CurrentPage, messagesFromRepo.PageSize, messagesFromRepo.TotalCount, messagesFromRepo.TotalPages);
+
+            return Ok(messages);
+        }
+
+
+        [HttpGet("thread/{recipientId}")]
+        public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var messagesFromRepo = await _messageRepo.GetMessageThread(userId, recipientId);
+
+            var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            return Ok(messageThread);
         }
 
     }
