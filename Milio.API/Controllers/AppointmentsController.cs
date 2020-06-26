@@ -21,11 +21,14 @@ namespace Milio.API.Controllers
         private readonly IAppointmentRepository _appointmentRepo;
         private readonly IUsersRepository _userRepo;
         private readonly IMapper _mapper;
-        public AppointmentsController(IAppointmentRepository appointmentRepo, IUsersRepository userRepo, IMapper mapper)
+        private readonly IMessagesRepository _messageRepo;
+
+        public AppointmentsController(IAppointmentRepository appointmentRepo, IUsersRepository userRepo, IMapper mapper, IMessagesRepository messageRepo)
         {
             _mapper = mapper;
             _appointmentRepo = appointmentRepo;
             _userRepo = userRepo;
+            _messageRepo = messageRepo;
         }
 
         [HttpGet("{id}", Name="GetAppointment")]
@@ -83,19 +86,31 @@ namespace Milio.API.Controllers
 
         [Authorize(Policy = "RequireBabysitterRole")]
         [HttpPut("confirm/{id}")]
-        public async Task<IActionResult> ConfirmAppointment(int userId, int id, [FromBody]AppointmentToCreateDto appointmentToCreateDto)
+        public async Task<IActionResult> ConfirmAppointment(int userId, int id, [FromBody]AppointmentToConfirmDto appointmentToConfirmDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var appointmentFromRepo = await _appointmentRepo.GetAppointment(id);
 
-            _mapper.Map(appointmentToCreateDto, appointmentFromRepo);
+            _mapper.Map(appointmentToConfirmDto, appointmentFromRepo);
+
+            //enviar mensaje
+            var messageForCreationDto = new MessageForCreationDto();
+            
+            messageForCreationDto.Content="Hola, acepte tu pedido c:";
+            messageForCreationDto.SenderId = appointmentFromRepo.CarerId;
+            messageForCreationDto.RecipientId = appointmentFromRepo.ClientId;
+
+            var message = _mapper.Map<Message>(messageForCreationDto);
+            _messageRepo.Add(message);
+
+            //
 
             if ( await _appointmentRepo.SaveAll())
                 return NoContent();
             
-            throw new Exception("$Updating appointment {id} failed on save");
+            throw new Exception("$Confirming appointment {id} failed on save");
         }
 
 
@@ -112,7 +127,7 @@ namespace Milio.API.Controllers
             
             var myAppointments = _mapper.Map<IEnumerable<AppointmentToReturnDto>>(appointmentsFromRepo);
 
-    
+
             return Ok(myAppointments);
         }
 

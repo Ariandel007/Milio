@@ -5,7 +5,6 @@ namespace Milio.API.Dtos
 {
     public class AppointmentToCreateDto
     {
-        public int Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; } 
         // public bool Acepted { get; set; }
