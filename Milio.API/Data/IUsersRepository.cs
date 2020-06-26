@@ -11,6 +11,8 @@ namespace Milio.API.Data
         Task<bool> SaveAll();
         Task<PagedList<User>> GetCarers(UserParams userParams);
         Task<User> GetUser(int id);
+        Task<Carer> GetCarer(int id);
+
     }
 
 }

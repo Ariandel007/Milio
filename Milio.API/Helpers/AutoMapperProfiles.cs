@@ -41,6 +41,10 @@ namespace Milio.API.Helpers
                 .ForMember(m => m.RecipientPhotoUrl, opt => opt
                     .MapFrom(u => u.Recipient.Photos.FirstOrDefault(p => p.IsMain).Url));
 
+            CreateMap<AppointmentToCreateDto, Appointment>();
+            CreateMap<AppointmentToConfirmDto, Appointment>();
+            CreateMap<Appointment, AppointmentToReturnDto>();            
+
         }
     }
 }

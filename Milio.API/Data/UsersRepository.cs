@@ -81,5 +81,12 @@ namespace Milio.API.Data
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Carer> GetCarer(int id)
+        {
+            var carer = await _context.Carers.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
+
+            return carer;        
+        }
     }
 }

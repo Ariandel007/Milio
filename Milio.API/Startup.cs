@@ -107,6 +107,7 @@ namespace Milio.API
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IMessagesRepository, MessagesRepository>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
         }
 
