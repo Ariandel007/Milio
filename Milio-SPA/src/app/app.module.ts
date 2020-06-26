@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './_services/user.service';
 import { CarerListResolver } from './_resolvers/carer-list.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 
 export function tokenGetter() {
@@ -80,7 +81,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
      AuthService,
      AuthGuard,
      UserService,
-     CarerListResolver
+     CarerListResolver,
+     MessagesResolver
    ],
    bootstrap: [
       AppComponent
