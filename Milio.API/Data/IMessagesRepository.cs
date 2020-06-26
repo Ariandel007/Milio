@@ -11,7 +11,7 @@ namespace Milio.API.Data
         void Delete<T>(T entity) where T: class;
         Task<bool> SaveAll();
         Task<Message> GetMessage(int id);
-        Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams);
+        Task<IEnumerable<Message>> GetMessagesForUser(MessageParams messageParams);
         Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId);
 
     }

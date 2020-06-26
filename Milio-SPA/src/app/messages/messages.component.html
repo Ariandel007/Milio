@@ -5,6 +5,7 @@
     <h3 class=" text-center">Mensajes</h3>
     <div class="messaging">
       <div class="inbox_msg">
+
         <div class="inbox_people">
           <div class="headind_srch">
             <div class="channel_heading">
@@ -12,43 +13,44 @@
             </div>
           </div>
           <div class="inbox_chat">
-            <!-- <div class="channels" *ngFor="let channel of channelList">
+            <div class="channels" *ngFor="let message of messages">
               <div class="chat_list">
                 <div class="chat_people">
-                  <div class="chat_ib">
+                  <div class="chat_ib" (click)="loadChat(message.recipientId, message.senderId)">
                     <h5>
-                      {{ channel.data.name }}
+                      {{ message.recipientId }}
                     </h5>
-                    <p>
-                      {{
-                        channel.state.messages[
-                          channel.state.messages.length - 1
-                        ].text
-                      }}
-                    </p>
+                    <div>{{message.content}}</div>
+
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
+
           </div>
         </div>
+
         <div class="mesgs">
           <div class="msg_history">
-            <li class="message">
+            <li class="message" *ngFor="let chat of chatMessages">
               <div
-
+                *ngIf="
+                  chat.senderId != currentUserID;
+                  then incoming_msg;
+                  else outgoing_msg
+                "
               ></div>
               <ng-template #incoming_msg>
                 <div class="incoming_msg">
                   <div class="incoming_msg_img">
-                    <!-- <img
-                      src="aca deberia estar la url de la img cloudinary del usuario"
+                    <img
+                      src="{{chat.recipientPhotoUrl || '../../../../assets/images/user.jpg'}}"
                       alt="User avatar"
-                    /> -->
+                    />
                   </div>
                   <div class="received_msg">
                     <div class="received_withd_msg">
-                      <p>mensaje1/p>
+                      <p>{{ chat.content }}</p>
                     </div>
                   </div>
                 </div>
@@ -56,21 +58,24 @@
               <ng-template #outgoing_msg>
                 <div class="outgoing_msg">
                   <div class="sent_msg">
-                    <p>mensaje 2</p>
+                    <p>{{ chat.content }}</p>
                   </div>
                 </div>
               </ng-template>
             </li>
           </div>
           <div class="type_msg">
-            <form class="input_msg_write" >
+            <form class="input_msg_write" (ngSubmit)="sendMessage()">
               <input
                 type="text"
                 class="write_msg"
                 placeholder="Escribe un mensaje..."
+                value=""
                 name="newMessage"
+                [(ngModel)]="newMessage.content"
+
               />
-              <button class="msg_send_btn" type="button">
+              <button class="msg_send_btn" type="submit">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>
             </form>

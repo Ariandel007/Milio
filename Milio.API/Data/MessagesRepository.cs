@@ -30,26 +30,30 @@ namespace Milio.API.Data
             return await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
+        public async Task<IEnumerable<Message>> GetMessagesForUser(MessageParams messageParams)
         {
-            var messages = _context.Messages.AsQueryable();
+            var messages = await _context.Messages.OrderByDescending(d => d.MessageSent).ToListAsync();
+            
+            messages = messages.GroupBy(p => new {p.SenderId, p.RecipientId} )
+                        .Select(g => g.FirstOrDefault())
+                        .ToList(); 
 
-            switch (messageParams.MessageContainer)
-            {
-                case "Inbox":
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.RecipientDeleted == false);
-                    break;
-                case "Outbox":
-                    messages = messages.Where(u => u.SenderId == messageParams.UserId && u.SenderDeleted == false);
-                    break;
-                default:
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.RecipientDeleted == false && u.IsRead == false);
-                    break;
-            }
-
-            messages = messages.OrderByDescending(d => d.MessageSent);
-
-            return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);        
+            // switch (messageParams.MessageContainer)
+            // {
+            //     case "Inbox":
+            //         messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.RecipientDeleted == false);
+            //         break;
+            //     case "Outbox":
+            //         messages = messages.Where(u => u.SenderId == messageParams.UserId && u.SenderDeleted == false);
+            //         break;
+            //     default:
+            //         messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.RecipientDeleted == false && u.IsRead == false);
+            //         break;
+            // }
+            var x=messages[0];
+            
+            // return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);       
+            return messages; 
         }
 
 

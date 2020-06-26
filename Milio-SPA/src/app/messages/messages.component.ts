@@ -14,8 +14,17 @@ import { ToastrService } from 'ngx-toastr';
 export class MessagesComponent implements OnInit {
 
   messages: Message[];
+  chatMessages: Message[];
   pagination: Pagination;
   messageContainer = 'Unread';
+
+
+  newMessage:any = {};
+
+  currentUserID:number;
+
+  idUSerToSendMessage:number;
+
 
   constructor(
     private userService: UserService,
@@ -29,6 +38,7 @@ export class MessagesComponent implements OnInit {
       this.messages = data.messages.result;
       this.pagination = data.messages.pagination;
     });
+    this.currentUserID = this.authService.decodedToken.nameid;
   }
 
   loadMessages() {
@@ -53,6 +63,40 @@ export class MessagesComponent implements OnInit {
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadMessages();
+  }
+
+  loadChat(idRecipient: number, idSender: number)
+  {
+
+    const idUSerToSendMessage = this.currentUserID === idRecipient ? idSender : idRecipient;
+    // this.idUSerToSendMessage = idUSerToSendMessage;
+    this.newMessage.recipientId = idUSerToSendMessage;
+
+    this.userService.getMessageThread(this.currentUserID, idUSerToSendMessage)
+    .subscribe(
+      chatMessages => {
+        this.chatMessages = chatMessages;
+        console.log(chatMessages);
+      },
+      error => {
+        this.toastr.error(error);
+      }
+    );
+
+  }
+
+  sendMessage() {
+      this.userService
+      .sendMessage(this.authService.decodedToken.nameid, this.newMessage)
+      .subscribe(
+        (message: Message) => {
+          this.chatMessages.unshift(message);
+          this.newMessage.content = '';
+        },
+        error => {
+          this.toastr.error(error);
+        }
+    );
   }
 
 }

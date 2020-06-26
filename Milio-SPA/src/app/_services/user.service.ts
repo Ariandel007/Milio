@@ -76,5 +76,15 @@ export class UserService {
       );
   }
 
+  getMessageThread(id: number, recipientId: number) {
+    return this.http.get<Message[]>(
+      this.baseUrl + 'chat/' + id + '/messages/thread/' + recipientId
+    );
+  }
+
+  sendMessage(id: number, message: Message) {
+    return this.http.post(this.baseUrl + 'chat/' + id + '/messages', message);
+  }
+
 
 }
