@@ -30,6 +30,9 @@ namespace Milio.API.Controllers
         {
             var user = await _repo.GetUser(id);
 
+            if (user == null)
+                return NotFound();
+
             var userToReturn = _mapper.Map<CarerForDetailedtDto>(user);
             
             return Ok(userToReturn);
