@@ -11,6 +11,7 @@
           <label  class="logo mr-auto logo-pointer" [routerLink]="['/']"> <h1 class="text-dark">Milio</h1></label>
         </li>
         <li id="un_large_section" *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
+        <li id="un_large_section" *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/jobs']">Trabajos</a></li>
         <li id="un_large_section" *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" >Mensajes</a></li>
         <li id="un_large_section">
           <div class="btn-group" dropdown>
@@ -19,8 +20,8 @@
             </button>
             <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
                 role="menu">
-                <li *appHasRole="['Client']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
-                <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/carer/edit']" class="list-group-item">Mi Perfil</a></li>
+                <li *appHasRole="['Client']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="sesion">Mi Perfil</a></li>
+                <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/carer/edit']" class="sesion">Mi Perfil</a></li>
                 <li role="menuitem"><a class="dropdown-item sesion" (click)="logout()">Cerrar Sesion</a></li>
             </ul>
           </div>
@@ -44,6 +45,7 @@
 
         <ul *ngIf="loggedIn()" class="list-group">
           <li *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" class="list-group-item">Buscar Cuidadores</a></li>
+          <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/jobs']" class="list-group-item">Trabajos</a></li>
           <li *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" class="list-group-item">Mensajes</a></li>
           <li *appHasRole="['Client']" routerLinkActive="active"><a [routerLink]="['/client/edit']" class="list-group-item">Mi Perfil</a></li>
           <li *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/carer/edit']" class="list-group-item">Mi Perfil</a></li>

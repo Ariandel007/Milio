@@ -51,16 +51,15 @@ a.active,a:hover{
 }
 
 .sesion {
-  padding: 1px;
+  padding: -10%;
   border-radius: 1px;
 }
 
 .sesion:hover{
   background:none;
   color: #D68C18;
-  padding: 1px;
   border-radius: 1px;
-
+  cursor:pointer;
 }
 
 .checkbtn{
