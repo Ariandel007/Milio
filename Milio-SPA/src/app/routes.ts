@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CarerListResolver } from './_resolvers/carer-list.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { JobsComponent } from './jobs/jobs.component';
 
 
 export const appRoutes: Routes = [
@@ -20,6 +21,7 @@ export const appRoutes: Routes = [
       {path: 'carers', component: CarerListComponent, data: {roles: ['Admin', 'Client']}, resolve: {carers: CarerListResolver}},
       {path: 'messages', component: MessagesComponent
           , resolve: {messages: MessagesResolver}, data: {roles: ['Admin', 'Client', 'Babysitter']}, },
+      {path: 'jobs', component: JobsComponent, data: {roles: ['Admin', 'Babysitter']} },
     ]
   },
   {path: '**', redirectTo: '', pathMatch: 'full'}

@@ -28,8 +28,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './_services/user.service';
 import { CarerListResolver } from './_resolvers/carer-list.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
-import { PaymentComponent } from './payment/payment.component';
 import { ContractService } from './_services/contract.service';
+import { JobsComponent } from './jobs/jobs.component';
 
 
 export function tokenGetter() {
@@ -46,50 +46,50 @@ export class CustomHammerConfig extends HammerGestureConfig  {
 
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      NavComponent,
-      HeroComponent,
-      FooterComponent,
-      MessagesComponent,
-      CarerListComponent,
-      CarerCardComponent,
-      HasRoleDirective,
-      RegisterComponent,
-      LoginComponent,
-      PaymentComponent
-   ],
-   imports: [
-    BrowserModule,
-    CarouselModule.forRoot(),
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:5001'],
-        blacklistedRoutes: ['localhost:5001/api/auth']
-      }
-    }),
-    RouterModule.forRoot(appRoutes),
-    BsDropdownModule.forRoot(),
-    BrowserAnimationsModule,
-    BsDatepickerModule.forRoot(),
-    ToastrModule.forRoot(), // ToastrModule added
-    ButtonsModule.forRoot(),
-    PaginationModule.forRoot()
- ],
-   providers: [
-     AuthService,
-     AuthGuard,
-     UserService,
-     ContractService,
-     CarerListResolver,
-     MessagesResolver
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+     AppComponent,
+     NavComponent,
+     HeroComponent,
+     FooterComponent,
+     MessagesComponent,
+     CarerListComponent,
+     CarerCardComponent,
+     HasRoleDirective,
+     RegisterComponent,
+     LoginComponent,
+     JobsComponent
+  ],
+  imports: [
+   BrowserModule,
+   CarouselModule.forRoot(),
+   FormsModule,
+   ReactiveFormsModule,
+   HttpClientModule,
+   JwtModule.forRoot({
+     config: {
+       tokenGetter: tokenGetter,
+       whitelistedDomains: ['localhost:5001'],
+       blacklistedRoutes: ['localhost:5001/api/auth']
+     }
+   }),
+   RouterModule.forRoot(appRoutes),
+   BsDropdownModule.forRoot(),
+   BrowserAnimationsModule,
+   BsDatepickerModule.forRoot(),
+   ToastrModule.forRoot(), // ToastrModule added
+   ButtonsModule.forRoot(),
+   PaginationModule.forRoot()
+],
+  providers: [
+    AuthService,
+    AuthGuard,
+    UserService,
+    ContractService,
+    CarerListResolver,
+    MessagesResolver
+  ],
+  bootstrap: [
+     AppComponent
+  ]
 })
 export class AppModule { }

@@ -12,8 +12,11 @@ export class ContractService {
   constructor(private http: HttpClient) { }
 
   createAppointment(idClient: number, appointment: Appointment) {
-    console.log(appointment);
     return this.http.post(this.baseUrl + 'contracts/' + idClient + '/appointments', appointment);
+  }
+
+  getAppointments(CarerId: number) {
+    return this.http.get<Appointment[]>(this.baseUrl + 'contracts/' + CarerId + '/appointments');
   }
 
 }

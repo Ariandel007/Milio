@@ -50,7 +50,6 @@ namespace Milio.API.Data
             //         messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.RecipientDeleted == false && u.IsRead == false);
             //         break;
             // }
-            var x=messages[0];
             
             // return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);       
             return messages; 

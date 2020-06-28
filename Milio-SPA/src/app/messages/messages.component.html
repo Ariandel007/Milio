@@ -18,7 +18,7 @@
                 <div class="chat_people">
                   <div class="chat_ib" (click)="loadChat(message.recipientId, message.senderId)">
                     <h5>
-                      {{ message.recipientId }}
+                      <!-- {{ message.recipientId }} -->
                     </h5>
                     <div>{{message.content}}</div>
 
@@ -33,20 +33,20 @@
         <div class="mesgs">
           <div class="msg_history">
             <li class="message" *ngFor="let chat of chatMessages">
-              <div
-                *ngIf="
-                  chat.senderId != currentUserID;
-                  then incoming_msg;
-                  else outgoing_msg
-                "
-              ></div>
+                <div
+                  *ngIf="
+                    chat.senderId != currentUserID;
+                    then incoming_msg;
+                    else outgoing_msg
+                  "
+                ></div>
               <ng-template #incoming_msg>
                 <div class="incoming_msg">
                   <div class="incoming_msg_img">
-                    <img
+                    <!-- <img
                       src="{{chat.recipientPhotoUrl || '../../../../assets/images/user.jpg'}}"
                       alt="User avatar"
-                    />
+                    /> -->
                   </div>
                   <div class="received_msg">
                     <div class="received_withd_msg">

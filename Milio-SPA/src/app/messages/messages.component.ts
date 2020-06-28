@@ -15,7 +15,7 @@ export class MessagesComponent implements OnInit {
 
   messages: Message[];
   chatMessages: Message[];
-  pagination: Pagination;
+  pagination: any = {};
   messageContainer = 'Unread';
 
 
@@ -34,11 +34,14 @@ export class MessagesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.messages = data.messages.result;
-      this.pagination = data.messages.pagination;
-    });
+    this.messages = null;
+
+    // this.route.data.subscribe(data => {
+    //   this.messages = data.messages.result;
+    //   this.pagination = data.messages.pagination;
+    // });
     this.currentUserID = this.authService.decodedToken.nameid;
+    this.loadMessages();
   }
 
   loadMessages() {
@@ -67,15 +70,16 @@ export class MessagesComponent implements OnInit {
 
   loadChat(idRecipient: number, idSender: number)
   {
-
-    const idUSerToSendMessage = this.currentUserID === idRecipient ? idSender : idRecipient;
+    const idUSerToSendMessage = this.currentUserID == idRecipient ? idSender : idRecipient;
     // this.idUSerToSendMessage = idUSerToSendMessage;
+    console.log(idUSerToSendMessage);
     this.newMessage.recipientId = idUSerToSendMessage;
 
     this.userService.getMessageThread(this.currentUserID, idUSerToSendMessage)
     .subscribe(
       chatMessages => {
         this.chatMessages = chatMessages;
+        console.log(chatMessages);
       },
       error => {
         this.toastr.error(error);
@@ -97,5 +101,4 @@ export class MessagesComponent implements OnInit {
         }
     );
   }
-
 }
