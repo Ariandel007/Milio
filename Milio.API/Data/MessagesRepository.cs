@@ -32,9 +32,10 @@ namespace Milio.API.Data
 
         public async Task<IEnumerable<Message>> GetMessagesForUser(MessageParams messageParams)
         {
-            var messages = await _context.Messages.OrderByDescending(d => d.MessageSent).ToListAsync();
-            
-            messages = messages.GroupBy(p => new {p.SenderId, p.RecipientId} )
+            // var messages = await _context.Messages.OrderByDescending(d => d.MessageSent).ToListAsync();
+            var messages = await _context.Messages.Include(m => m.Sender).Include(m => m.Recipient).OrderByDescending(d => d.MessageSent).ToListAsync();
+
+            messages = messages.GroupBy(p => new {p.SenderId, p.RecipientId})
                         .Select(g => g.FirstOrDefault())
                         .ToList(); 
 

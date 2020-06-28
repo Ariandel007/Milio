@@ -6,4 +6,5 @@ export interface Appointment {
   cost: number;
   carerId: number;
   clientId: number;
+  acepted: boolean;
 }

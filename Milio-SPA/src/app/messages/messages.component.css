@@ -12,6 +12,14 @@
 	margin: auto;
 }
 
+@media (max-width: 767px){
+  #un_section { display : none; }
+}
+
+@media (min-width: 767px){
+  #un_section_mobile { display : none; }
+}
+
 img {
 	max-width: 100%;
 }

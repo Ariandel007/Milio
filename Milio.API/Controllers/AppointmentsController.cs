@@ -14,7 +14,7 @@ namespace Milio.API.Controllers
 {
     
     [Route("api/contracts/{userId}/[controller]")]
-    [Authorize(Policy = "RequireUserRole")]
+    // [Authorize(Policy = "RequireUserRole")]
     [ApiController]
     public class AppointmentsController : ControllerBase
     {

@@ -19,4 +19,8 @@ export class ContractService {
     return this.http.get<Appointment[]>(this.baseUrl + 'contracts/' + CarerId + '/appointments');
   }
 
+  confirmAppointment(CarerId: number, idAppointment: number, appointment: Appointment){
+    return this.http.put(this.baseUrl + 'contracts/' + CarerId + '/appointments/confirm/' + idAppointment, appointment);
+  }
+
 }

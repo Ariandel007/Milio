@@ -13,6 +13,7 @@ import { Appointment } from '../_models/appointment';
 export class JobsComponent implements OnInit {
 
   appointments: Appointment[];
+  acepted: any = {};
 
   constructor(
     private toastr: ToastrService,
@@ -35,4 +36,20 @@ export class JobsComponent implements OnInit {
 
   }
 
+  confirmApointemnt(idAppointment: number){
+    this.acepted.acepted = true;
+    console.log(this.acepted);
+    this.contractService.confirmAppointment(this.authService.decodedToken.nameid, idAppointment, this.acepted)
+    .subscribe(
+      () => {
+        this.toastr.success('Trabajo Aceptado');
+      },
+      error => {
+        this.toastr.error(error);
+      },
+      () => {
+          this.router.navigate(['/messages']);
+      }
+    );
+  }
 }
