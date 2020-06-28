@@ -3,9 +3,10 @@ import { Carer } from 'src/app/_models/carer';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { Appointment } from 'src/app/_models/appointment';
+import { AuthService } from 'src/app/_services/auth.service';
+import { ContractService } from 'src/app/_services/contract.service';
 
 @Component({
   selector: 'app-carer-list',
@@ -25,7 +26,14 @@ export class CarerListComponent implements OnInit {
   appointmentToSend: any = {};
 
 
-  constructor(private toastr: ToastrService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(
+    private toastr: ToastrService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private contractService: ContractService
+    ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -80,13 +88,17 @@ export class CarerListComponent implements OnInit {
   {
     this.dateParams.dateStart.setHours(0, 0 , 0, 0);
 
+    const diff = this.dateParams.endHour - this.dateParams.startHour;
+    this.costInShow = diff * this.carerSelected.fareForHour;
+
     let date1 = new Date();
     date1 = this.dateParams.dateStart;
     const date2 = new Date(this.dateParams.dateStart.valueOf());
 
     this.appointmentToSend.carerId = this.carerSelected.id;
-    date1.setHours(this.dateParams.startHour);
-    date2.setHours(this.dateParams.endHour);
+    //el -5 es para ajustarlo a la hora peruana
+    date1.setHours(this.dateParams.startHour - 5);
+    date2.setHours(this.dateParams.endHour - 5);
 
     console.log(date1);
     console.log(date2);
@@ -94,13 +106,21 @@ export class CarerListComponent implements OnInit {
     this.appointmentToSend.start = date1;
     this.appointmentToSend.end = date2;
 
-    const diff = this.dateParams.endHour - this.dateParams.startHour;
-    this.costInShow = diff * this.carerSelected.fareForHour;
   }
 
   doContract(){
-    //inserte apointemnts
-
+    this.contractService.createAppointment(this.authService.decodedToken.nameid, this.appointmentToSend)
+    .subscribe(
+      () => {
+        this.toastr.success('Contratacion Exitosa');
+      },
+      error => {
+        this.toastr.error(error);
+      },
+      () => {
+          this.router.navigate(['/messages']);
+      }
+    );
   }
 
 }

@@ -19,11 +19,11 @@ export class MessagesComponent implements OnInit {
   messageContainer = 'Unread';
 
 
-  newMessage:any = {};
+  newMessage: any = {};
 
-  currentUserID:number;
+  currentUserID: number;
 
-  idUSerToSendMessage:number;
+  idUSerToSendMessage: number;
 
 
   constructor(
@@ -76,7 +76,6 @@ export class MessagesComponent implements OnInit {
     .subscribe(
       chatMessages => {
         this.chatMessages = chatMessages;
-        console.log(chatMessages);
       },
       error => {
         this.toastr.error(error);
