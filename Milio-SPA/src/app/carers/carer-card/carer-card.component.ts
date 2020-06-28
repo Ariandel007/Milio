@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Carer } from 'src/app/_models/carer';
 
 @Component({
@@ -9,9 +9,22 @@ import { Carer } from 'src/app/_models/carer';
 export class CarerCardComponent implements OnInit {
   @Input() carer: Carer;
 
+  @Output()
+  showContractScreen = new EventEmitter<any>();
+
+  carerToSend: any = {};
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  contract(name: string, fareForHour: number, id: number){
+    this.carerToSend.id = id;
+    this.carerToSend.fareForHour = fareForHour;
+    this.carerToSend.name = name;
+
+    this.showContractScreen.emit(this.carerToSend);
   }
 
 }

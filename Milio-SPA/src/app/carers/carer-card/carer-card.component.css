@@ -4,6 +4,11 @@
 }
 
 .contract{
-  background-color: #E83925;
+  background:linear-gradient(
+    to right,
+    #ff845f,
+    #fc6334,
+    #fd5624
+  );
   color: aliceblue;
 }
