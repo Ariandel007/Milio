@@ -38,7 +38,7 @@ namespace Milio.API.Data
 
         public async Task<IEnumerable<Appointment>> GetAppointments(int carerId)
         {
-            return await this._context.Appointments.Where(a => a.CarerId == carerId).ToListAsync();
+            return await this._context.Appointments.Where(a => a.CarerId == carerId && a.Acepted==false).ToListAsync();
         }
 
         public async Task<bool> SaveAll()

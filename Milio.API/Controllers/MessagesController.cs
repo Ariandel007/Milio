@@ -14,7 +14,7 @@ namespace Milio.API.Controllers
 {
     
     [Route("api/chat/{userId}/[controller]")]
-    [Authorize(Policy = "RequireUserRole")]
+    // [Authorize(Policy = "RequireUserRole")]
     [ApiController]
     public class MessagesController : ControllerBase
     {
