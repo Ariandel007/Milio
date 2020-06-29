@@ -27,6 +27,7 @@ export class MessagesComponent implements OnInit {
 
   idUSerToSendMessage: number;
 
+  uniqueName: string;
 
   constructor(
     private userService: UserService,
@@ -38,6 +39,7 @@ export class MessagesComponent implements OnInit {
   ngOnInit() {
     this.messages = null;
     this.seeMessages = false;
+    this.uniqueName = this.authService.decodedToken.unique_name;
 
     // this.route.data.subscribe(data => {
     //   this.messages = data.messages.result;

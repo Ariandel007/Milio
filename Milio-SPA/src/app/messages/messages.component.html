@@ -15,7 +15,7 @@
           <div class="inbox_chat">
             <div class="channels" *ngFor="let message of messages">
               <div class="chat_list">
-                <div class="chat_people">
+                <div *ngIf="message.recipientName != uniqueName" class="chat_people">
                   <div class="chat_ib" (click)="loadChat(message.recipientId, message.senderId)">
                     <h5>
                       {{ message.recipientName}}
@@ -99,13 +99,10 @@
           <div class="inbox_chat">
             <div class="channels" *ngFor="let message of messages">
               <div class="chat_list">
-                <div class="chat_people">
-                  <div class="chat_ib" (click)="loadChat(message.recipientId, message.senderId)">
-                    <h5 *ngIf="currentUserID!=message.recipientId">
-                      {{ message.recipientName }}
-                    </h5>
-                    <h5 *ngIf="currentUserID!=message.senderId">
-                      {{ message.senderName }}
+                <div *ngIf="message.recipientName != uniqueName" class="chat_people">
+                  <div class="chat_ib" (click)="loadChat(message.recipientId, message.senderId)" (click)="toggleSeeMessage()">
+                    <h5 >
+                      {{ message.recipientName}}
                     </h5>
                     <div>{{message.content}}</div>
 
