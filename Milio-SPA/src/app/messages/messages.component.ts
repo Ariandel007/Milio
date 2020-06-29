@@ -18,6 +18,8 @@ export class MessagesComponent implements OnInit {
   pagination: any = {};
   messageContainer = 'Unread';
 
+  seeMessages: boolean;
+
 
   newMessage: any = {};
 
@@ -35,6 +37,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.messages = null;
+    this.seeMessages = false;
 
     // this.route.data.subscribe(data => {
     //   this.messages = data.messages.result;
@@ -93,12 +96,17 @@ export class MessagesComponent implements OnInit {
       .sendMessage(this.authService.decodedToken.nameid, this.newMessage)
       .subscribe(
         (message: Message) => {
-          this.chatMessages.unshift(message);
+          // this.chatMessages.unshift(message);
+          this.chatMessages.push(message);
           this.newMessage.content = '';
         },
         error => {
           this.toastr.error(error);
         }
     );
+  }
+
+  toggleSeeMessage(){
+    this.seeMessages  = !this.seeMessages;
   }
 }

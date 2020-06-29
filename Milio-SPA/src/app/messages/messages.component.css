@@ -115,7 +115,8 @@ img {
 
 .chat_people {
 	overflow: hidden;
-	clear: both;
+  clear: both;
+  cursor: pointer;
 }
 
 .chat_list {
@@ -231,4 +232,8 @@ img {
 
 .message {
 	list-style-type: none;
+}
+
+.btn-chats{
+  width: 100%;
 }

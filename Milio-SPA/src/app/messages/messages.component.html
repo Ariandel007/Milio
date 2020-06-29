@@ -82,14 +82,15 @@
   </div>
 
 
-
+<!-- ACA ESTA RESPONSIVE -->
 
   <div class="container" id = "un_section_mobile">
     <h3 class=" text-center">Mensajes</h3>
+    <button type="button" class=" btn-chats btn btn-dark" (click)="toggleSeeMessage()">Chats</button>
     <div class="messaging">
       <div class="inbox_msg">
 
-        <div class="inbox_people">
+        <div *ngIf="seeMessages" nclass="inbox_people">
           <div class="headind_srch">
             <div class="channel_heading">
               <h4>Conversaciones</h4>
@@ -100,8 +101,11 @@
               <div class="chat_list">
                 <div class="chat_people">
                   <div class="chat_ib" (click)="loadChat(message.recipientId, message.senderId)">
-                    <h5>
-                      <!-- {{ message.recipientId }} -->
+                    <h5 *ngIf="currentUserID!=message.recipientId">
+                      {{ message.recipientName }}
+                    </h5>
+                    <h5 *ngIf="currentUserID!=message.senderId">
+                      {{ message.senderName }}
                     </h5>
                     <div>{{message.content}}</div>
 
@@ -113,7 +117,7 @@
           </div>
         </div>
 
-        <div class="mesgs">
+        <div *ngIf="!seeMessages" >
           <div class="msg_history">
             <li class="message" *ngFor="let chat of chatMessages">
                 <div
