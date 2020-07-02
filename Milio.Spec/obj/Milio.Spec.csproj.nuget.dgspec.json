@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Spec\\Milio.Spec.csproj": {}
+    "G:\\Proyectos\\Milio\\Milio.Spec\\Milio.Spec.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Spec\\Milio.Spec.csproj": {
+    "G:\\Proyectos\\Milio\\Milio.Spec\\Milio.Spec.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Spec\\Milio.Spec.csproj",
+        "projectUniqueName": "G:\\Proyectos\\Milio\\Milio.Spec\\Milio.Spec.csproj",
         "projectName": "Milio.Spec",
-        "projectPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Spec\\Milio.Spec.csproj",
-        "packagesPath": "C:\\Users\\Braulio Uribe\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Spec\\obj\\",
+        "projectPath": "G:\\Proyectos\\Milio\\Milio.Spec\\Milio.Spec.csproj",
+        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+        "outputPath": "G:\\Proyectos\\Milio\\Milio.Spec\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Braulio Uribe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
