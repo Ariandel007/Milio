@@ -16,7 +16,7 @@ namespace Milio.Spec.steps
         {
            
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://localhost:4200/login");
+            driver.Navigate().GoToUrl("https://localhost:5001/login");
      
         }
         
