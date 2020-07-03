@@ -24,7 +24,12 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.toastr.error(error);
     }, () => {
-      this.router.navigate(['/messages']);
+      if (this.authService.decodedToken.role == 'Client') {
+        this.router.navigate(['/carers']);
+      }
+      if (this.authService.decodedToken.role == 'Babysitter') {
+        this.router.navigate(['/jobs']);
+      }
     });
   }
 

@@ -5,6 +5,6 @@ Feature: title
  So that reason
  
 Scenario: title
-  Given precondition
+   Given precondition
    When action
    Then testable outcome
