@@ -16,7 +16,7 @@ namespace Milio.Spec.steps
         {
            
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://localhost:5001/login");
+            driver.Navigate().GoToUrl("https://milio.azurewebsites.net/login");
      
         }
         
@@ -24,8 +24,8 @@ namespace Milio.Spec.steps
         public void WhenEnterTheEmailAndPassword()
         {
         
-            IWebElement inputUserName = driver.FindElement(By.Id("Input_UserName"));
-            IWebElement inputPassword = driver.FindElement(By.Id("Input_Password"));
+            IWebElement inputUserName = driver.FindElement(By.Name("UserName"));
+            IWebElement inputPassword = driver.FindElement(By.Name("Password"));
 
             inputUserName.SendKeys("javier");
             inputPassword.SendKeys("password");
@@ -35,7 +35,7 @@ namespace Milio.Spec.steps
         public void ThenTheResultShouldBeTheUserLogged()
         {
 
-            IWebElement buttonLogin = driver.FindElement(By.Id("login_button"));
+            IWebElement buttonLogin = driver.FindElement(By.Name("LoginButton"));
 
             buttonLogin.Click();
         }

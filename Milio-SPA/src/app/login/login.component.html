@@ -18,7 +18,7 @@
                 <div class="form-group mb-4">
                   <input id="Input_Password" type="password" name="Password" class="form-control log-input" placeholder="***********" required [(ngModel)]="model.password" />
                 </div>
-                <input id="login_button" type="submit" [disabled]="!loginForm.valid" class="in-submit btn btn-block login-btn mb-4" value="Iniciar Sesion" />
+                <input id="login_button" type="submit" name="LoginButton" [disabled]="!loginForm.valid" class="in-submit btn btn-block login-btn mb-4" value="Iniciar Sesion" />
               </form>
               <a href="#!" class="forgot-password-link">Olvidaste la contraseña?</a>
               <p class="login-card-footer-text">No tienes una cuenta? <a href="#!" class="text-reset">Registrate Aqui</a></p>
