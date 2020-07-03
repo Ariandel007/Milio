@@ -10,7 +10,7 @@
           <label  class="logo mr-auto logo-pointer" [routerLink]="['/']"><img src="../../assets/images/logo-milio.jpg"></label>
           <label  class="logo mr-auto logo-pointer" [routerLink]="['/']"> <h1 class="text-dark">Milio</h1></label>
         </li>
-        <li id="un_large_section" name="BuscarCuidadores" *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
+        <li id="un_large_section" *appHasRole="['Admin', 'Client']" routerLinkActive="active"><a  name="BuscarCuidadores" [routerLink]="['/carers']" >Buscar Cuidadores</a></li>
         <li id="un_large_section" *appHasRole="['Babysitter']" routerLinkActive="active"><a [routerLink]="['/jobs']">Trabajos</a></li>
         <li id="un_large_section" *appHasRole="['Admin', 'Client', 'Babysitter']" routerLinkActive="active"><a [routerLink]="['/messages']" >Mensajes</a></li>
         <li id="un_large_section">
