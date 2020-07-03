@@ -62,7 +62,7 @@
 
           </div>
 
-          <button type="submit" class="btn btn-apply-filters" style="margin-left:10px">Aplicar Filtros</button>
+          <button type="submit" name="AplicarFiltros" class="btn btn-apply-filters" style="margin-left:10px">Aplicar Filtros</button>
           <button type="button" class="btn btn-reset-filters" (click)="resetFilters()" style="margin-left:10px">Resetear Filtros</button>
           <br/>
 
@@ -118,11 +118,11 @@
     </div>
 
     <form class="form" #formPayment="ngForm" (ngSubmit)="setDates()">
-      <input class="form-control" placeholder="Fecha de Inicio del contrato" type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="dateParams.dateStart" [ngModelOptions]="{standalone: true}"/>
+      <input name="FechaContrato" class="form-control" placeholder="Fecha de Inicio del contrato" type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="dateParams.dateStart" [ngModelOptions]="{standalone: true}"/>
       <!-- <input class="form-control" placeholder="Fecha de Inicio del contrato" type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="dateParams.dateEnd" [ngModelOptions]="{standalone: true}"/> -->
-      <input class="form-control" placeholder="Hora de inicio" type="text" [(ngModel)]="dateParams.startHour" [ngModelOptions]="{standalone: true}"/>
-      <input class="form-control" placeholder="Hora de fin" type="text" [(ngModel)]="dateParams.endHour" [ngModelOptions]="{standalone: true}"/>
-      <button class="button-establecer" type="submit">Establecer</button>
+      <input name="HoraInicio" class="form-control" placeholder="Hora de inicio" type="text" [(ngModel)]="dateParams.startHour" [ngModelOptions]="{standalone: true}"/>
+      <input name="HoraFinal" class="form-control" placeholder="Hora de fin" type="text" [(ngModel)]="dateParams.endHour" [ngModelOptions]="{standalone: true}"/>
+      <button name="EstablecerFecha" class="button-establecer" type="submit">Establecer</button>
     </form>
 
     <div class="payment vcenter">
@@ -130,7 +130,7 @@
         <div class="infoheader vcenter">Monto Total:</div>
         <div class="infocontent val vcenter">s/.{{costInShow}}</div>
       </div>
-      <div class="button center" (click)="doContract()" >Contratar</div>
+      <div name="Realizar-Contrato" class="button center" (click)="doContract()" >Contratar</div>
 
       <div class="button-regresar center" (click)="CarerNoSelected()" >Regresar</div>
     </div>

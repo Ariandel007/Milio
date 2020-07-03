@@ -8,6 +8,6 @@
       <span>Tarifa por Hora: s/.{{carer.fareForHour}}</span>
       <span>{{carer.city}}</span>
       <span>{{carer.country}}</span>
-      <button class="btn contract" (click)="contract(carer.name, carer.fareForHour, carer.id)">Contratar</button>
+      <button class="btn contract" name="{{carer.userName}}" (click)="contract(carer.name, carer.fareForHour, carer.id)">Contratar</button>
     </div>
   </div>
