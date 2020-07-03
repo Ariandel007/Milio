@@ -38,6 +38,7 @@ namespace Milio.Spec.steps
             IWebElement buttonLogin = driver.FindElement(By.Name("LoginButton"));
 
             buttonLogin.Click();
+            driver.Quit();
         }
     }
 }

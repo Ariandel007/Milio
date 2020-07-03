@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Proyectos\\Milio\\Milio.Tests\\Milio.Tests.csproj": {}
+    "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Tests\\Milio.Tests.csproj": {}
   },
   "projects": {
-    "G:\\Proyectos\\Milio\\Milio.API\\Milio.API.csproj": {
+    "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.API\\Milio.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Proyectos\\Milio\\Milio.API\\Milio.API.csproj",
+        "projectUniqueName": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.API\\Milio.API.csproj",
         "projectName": "Milio.API",
-        "projectPath": "G:\\Proyectos\\Milio\\Milio.API\\Milio.API.csproj",
-        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-        "outputPath": "G:\\Proyectos\\Milio\\Milio.API\\obj\\",
+        "projectPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.API\\Milio.API.csproj",
+        "packagesPath": "C:\\Users\\Braulio Uribe\\.nuget\\packages\\",
+        "outputPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Braulio Uribe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -108,20 +108,20 @@
         }
       }
     },
-    "G:\\Proyectos\\Milio\\Milio.Tests\\Milio.Tests.csproj": {
+    "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Tests\\Milio.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Proyectos\\Milio\\Milio.Tests\\Milio.Tests.csproj",
+        "projectUniqueName": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Tests\\Milio.Tests.csproj",
         "projectName": "Milio.Tests",
-        "projectPath": "G:\\Proyectos\\Milio\\Milio.Tests\\Milio.Tests.csproj",
-        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-        "outputPath": "G:\\Proyectos\\Milio\\Milio.Tests\\obj\\",
+        "projectPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Tests\\Milio.Tests.csproj",
+        "packagesPath": "C:\\Users\\Braulio Uribe\\.nuget\\packages\\",
+        "outputPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Braulio Uribe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -134,8 +134,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "G:\\Proyectos\\Milio\\Milio.API\\Milio.API.csproj": {
-                "projectPath": "G:\\Proyectos\\Milio\\Milio.API\\Milio.API.csproj"
+              "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.API\\Milio.API.csproj": {
+                "projectPath": "D:\\Documentos\\Documents\\Cursos 7to ciclo\\Fundamentos de Arquitectura de software\\Milio\\Milio\\Milio.API\\Milio.API.csproj"
               }
             }
           }
