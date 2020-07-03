@@ -18,7 +18,7 @@
       <td>{{appointment.start | date:'medium'}}</td>
       <td>{{appointment.end | date:'medium'}}</td>
       <td>s/.{{appointment.cost}}</td>
-      <td><button (click)="confirmApointemnt(appointment.id)" class="btn btn-primary">Aceptar</button></td>
+      <td><button name="{{appointment.clientId}}" (click)="confirmApointemnt(appointment.id)" class="btn btn-primary">Aceptar</button></td>
     </tr>
   </tbody>
 </table>
