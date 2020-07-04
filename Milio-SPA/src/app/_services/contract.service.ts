@@ -23,4 +23,7 @@ export class ContractService {
     return this.http.put(this.baseUrl + 'contracts/' + CarerId + '/appointments/confirm/' + idAppointment, appointment);
   }
 
+  deleteAppointment(CarerId: number, idAppointment: number){
+    return this.http.delete(this.baseUrl + 'contracts/' + CarerId + '/appointments/delete/' + idAppointment);
+  }
 }

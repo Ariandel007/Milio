@@ -131,6 +131,26 @@ namespace Milio.API.Controllers
             return Ok(myAppointments);
         }
 
+        
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteAppointment(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var appointmentFromRepo = await _appointmentRepo.GetAppointment(id);
+
+            if (appointmentFromRepo == null)
+                return NotFound();
+            
+            _appointmentRepo.Delete(appointmentFromRepo);
+
+            if ( await _appointmentRepo.SaveAll())
+                return Ok();
+
+            throw new Exception("$ appointment {id} failed on delete");
+        }
+
 
     }
 }

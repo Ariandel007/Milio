@@ -52,4 +52,22 @@ export class JobsComponent implements OnInit {
       }
     );
   }
+
+  rejectApointemnt(idAppointment: number){
+
+    this.contractService.deleteAppointment(this.authService.decodedToken.nameid, idAppointment)
+    .subscribe(
+      () => {
+        this.toastr.info('Trabajo Rechazado');
+        this.loadAppointments();
+      },
+      error => {
+        this.toastr.error(error);
+      },
+      () => {
+          this.router.navigate(['/jobs']);
+      }
+    );
+  }
+
 }

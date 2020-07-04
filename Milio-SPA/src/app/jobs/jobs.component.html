@@ -19,6 +19,7 @@
       <td>{{appointment.end | date:'medium'}}</td>
       <td>s/.{{appointment.cost}}</td>
       <td><button name="{{appointment.clientId}}" (click)="confirmApointemnt(appointment.id)" class="btn btn-primary">Aceptar</button></td>
+      <td><button name="{{appointment.carerId}}" (click)="rejectApointemnt(appointment.id)" class="btn btn-danger">Rechazar</button></td>
     </tr>
   </tbody>
 </table>
